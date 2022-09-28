@@ -18,6 +18,7 @@ return new class extends Migration
             $table->uuid('prison_id');
             $table->uuid('user_id');
             $table->boolean('has_changed_password');
+            $table->bigInteger('password_expiration_days');
             $table->timestamps();
         });
     }
