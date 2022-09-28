@@ -11,7 +11,7 @@ class Admin extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id', 'user_id', 'prison_id', 'has_changed_password'
+        'id', 'user_id', 'prison_id', 'has_changed_password', 'password_expiration_days'
     ];
 
     protected $casts = [
