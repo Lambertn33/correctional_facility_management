@@ -21,8 +21,8 @@ return new class extends Migration
             $table->uuid('inmate_id');
             $table->uuid('tariff_id');
             $table->date('date');
-            $table->timestamp('from');
-            $table->timestamp('to');
+            $table->timestamp('from')->nullable();
+            $table->timestamp('to')->nullable();
             $table->timestamps();
         });
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Visitors\VisitorsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(VisitorsController::class)->group(function() {
+    Route::get('/','index');
+    Route::post('/','requestAppointment')->name('requestAppointment');
 });
