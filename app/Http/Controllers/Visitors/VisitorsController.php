@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Visitors;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Common\ValidateInputs;
+use App\Jobs\Visitor\AppointmentReceived;
 use App\Models\Appointment;
 use App\Models\Inmate;
 use App\Models\Prison;
@@ -26,14 +27,15 @@ class VisitorsController extends Controller
         $phoneFormat = 2507;
         $phoneTotalDigits = 12;
         $data = $request->all();
-        $checkInmateExistence = Inmate::where('national_id', $data['inmateNationalId']);
+        $checkInmateExistence = Inmate::where('national_id', $data['inmateNationalId'])->where('status', \App\Models\Inmate::ACTIVE);
         try {
-            DB::rollback();
+            DB::beginTransaction();
             if (!$checkInmateExistence->exists()) {
                 return back()->withInput()->with('error','There is no inmate with such national ID');
             }
             // Check if Inmate exists and has no appointment on the selected date
-            $inmateToVisitId = $checkInmateExistence->value('id');
+            $inmateToVisit = $checkInmateExistence->first();
+            $inmateToVisitId = $inmateToVisit->id;
             $checkInmateAppointment = Appointment::where('inmate_id', $inmateToVisitId)
             ->where('date', $data['visitDate']);
 
@@ -58,9 +60,8 @@ class VisitorsController extends Controller
             ];
             Appointment::insert($newAppointment);
             DB::commit();
-            //TODO Send Confirmation SMS to The User
-
-            //--------------------------------------
+            // Send Confirmation SMS to The User
+            dispatch(new AppointmentReceived($newAppointment, $inmateToVisit));
             return back()->with('success', 'appointment made successfully... you will get a confirmation SMS');
         } catch (\Throwable $th) {
             DB::rollback();
