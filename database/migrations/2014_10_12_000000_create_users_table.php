@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('role_id');
             $table->string('names');
             $table->string('email')->unique();
-            $table->string('telephone');
+            $table->bigInteger('telephone');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

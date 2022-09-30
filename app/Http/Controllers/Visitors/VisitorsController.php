@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 class VisitorsController extends Controller
 {
-    public function  index()
+    public function  getHomePage()
     {
         $allPrisons = Prison::get();
         $allTariffs = Tariff::get();
