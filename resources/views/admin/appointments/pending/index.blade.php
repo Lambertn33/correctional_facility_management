@@ -41,7 +41,7 @@
                             @foreach ($pendingAppointments as $item)
                                 <tr>
                                     <td>{{$counter}}</td>
-                                    <?$counter ++?>
+                                    <?php $counter++ ?>
                                     <td>{{$item->names}}</td>
                                     <td>{{$item->national_id}}</td>
                                     <td>{{$item->inmate->names}}</td>

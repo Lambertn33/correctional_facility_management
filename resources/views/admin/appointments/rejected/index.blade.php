@@ -41,7 +41,7 @@
                             @foreach ($rejectedAppointments as $item)
                                 <tr>
                                     <td>{{$counter}}</td>
-                                    <?$counter ++?>
+                                    <?php $counter++ ?>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="recent-product-img">

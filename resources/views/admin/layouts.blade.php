@@ -48,6 +48,10 @@
 		width: 1.5625rem;
 		height: 1.5625rem;
 	}
+
+	#table-responsive_filter input, #table-responsive_length select{
+		border-radius: 1.25rem;
+	}
 </style>
 
 <body>

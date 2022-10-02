@@ -47,6 +47,9 @@ class VisitorsController extends Controller
             if (!(new ValidateInputs)->validatePhoneNumber($data['telephone'], $phoneFormat, $phoneTotalDigits)) {
                 return back()->withInput()->with('error','The Telephone number must start with '. $phoneFormat .'... and consists of '.$phoneTotalDigits.' digits');
             }
+            if (!(new ValidateInputs)->validateNationalIDLength($data['nationalId']) || !(new ValidateInputs)->validateNationalIDLength($data['inmateNationalId'])) {
+                return back()->withInput()->with('error','The national ID Must consists of 16 digits');
+            }
             
             $newAppointment = [
                 'id' => Str::uuid()->toString(),
