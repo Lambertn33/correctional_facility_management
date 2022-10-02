@@ -74,4 +74,27 @@ class AppointmentsController extends Controller
             return back()->with('error', 'an error occured...please try again');
         }
     }
+
+    //APPROVED APPOINTMENTS
+
+    public function getApprovedAppointments()
+    {
+        $authenticatedUser = Auth::user();
+        $authenticatedAdmin = $authenticatedUser->admin;
+        $currentPrison = $authenticatedAdmin->prison;
+        $approvedAppointments = $currentPrison->appointments()->where('status', Appointment::APPROVED)->get();
+        return view('admin.appointments.approved.index', compact('currentPrison','approvedAppointments','authenticatedUser'));
+    }
+
+    // REJECTED APPOINTMENTS
+
+    public function getRejectedAppointments()
+    {
+        $authenticatedUser = Auth::user();
+        $authenticatedAdmin = $authenticatedUser->admin;
+        $currentPrison = $authenticatedAdmin->prison;
+        $rejectedAppointments = $currentPrison->appointments()->where('status', Appointment::REJECTED)->get();
+        return view('admin.appointments.rejected.index', compact('currentPrison','rejectedAppointments','authenticatedUser'));
+    }
+
 }

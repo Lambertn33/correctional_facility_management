@@ -59,5 +59,15 @@ Route::prefix('admin')->group(function() {
                 Route::put('/reject', 'rejectSinglePendingAppointment')->name('rejectSinglePendingAppointment');
             });
         });
+        //Approved Appointments
+        Route::prefix('approved')->group(function() {
+            Route::get('/', 'getApprovedAppointments')->name('getApprovedAppointments');
+        });
+        
+        //Rejected Appointments
+        Route::prefix('rejected')->group(function() {
+            Route::get('/', 'getRejectedAppointments')->name('getRejectedAppointments');
+        });
+
     });
 });

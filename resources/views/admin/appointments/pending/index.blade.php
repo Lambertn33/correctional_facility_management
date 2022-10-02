@@ -10,7 +10,7 @@
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="{{route('getAdminDashboardOverview')}}"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Pending Appointments (<b class="text-danger">{{$pendingAppointments->count()}}</b>)</li>
+                            <li class="breadcrumb-item active" aria-current="page">Pending Appointments <b class="text-info">({{$pendingAppointments->count()}})</b></li>
                         </ol>
                     </nav>
                 </div>
@@ -24,7 +24,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
-                <div class="table-responsive">
+                <div class="table-responsive align-middle">
                     <table class="table mb-0" id="table-responsive">
                         <thead class="table-light">
                             <tr>
