@@ -24,7 +24,7 @@ class UsersSeeder extends Seeder
                 'role_id' => \App\Models\Role::where('name', \App\Models\Role::SUPER_ADMINISTRATOR)->value('id'),
                 'names' => 'super administrator',
                 'email' => 'superadministrator@gmail.com',
-                'telephone' => Hash::make(250788000000),
+                'telephone' => 250788000000,
                 'password' => Hash::make('superadmin12345'),
                 'created_at' => now(),
                 'updated_at' => now()
@@ -34,7 +34,7 @@ class UsersSeeder extends Seeder
                 'role_id' => \App\Models\Role::where('name', \App\Models\Role::ADMINISTRATOR)->value('id'),
                 'names' => 'administrator1',
                 'email' => 'administrator1@gmail.com',
-                'telephone' => Hash::make(250788111111),
+                'telephone' => 250788111111,
                 'password' => Hash::make('admin12345'),
                 'created_at' => now(),
                 'updated_at' => now()
@@ -44,7 +44,7 @@ class UsersSeeder extends Seeder
                 'role_id' => \App\Models\Role::where('name', \App\Models\Role::ADMINISTRATOR)->value('id'),
                 'names' => 'administrator2',
                 'email' => 'administrator2@gmail.com',
-                'telephone' => Hash::make(250788222222),
+                'telephone' => 250788222222,
                 'password' => Hash::make('admin12345'),
                 'created_at' => now(),
                 'updated_at' => now()
@@ -54,7 +54,7 @@ class UsersSeeder extends Seeder
                 'role_id' => \App\Models\Role::where('name', \App\Models\Role::ADMINISTRATOR)->value('id'),
                 'names' => 'administrator3',
                 'email' => 'administrator3@gmail.com',
-                'telephone' => Hash::make(250788333333),
+                'telephone' => 250788333333,
                 'password' => Hash::make('admin12345'),
                 'created_at' => now(),
                 'updated_at' => now()

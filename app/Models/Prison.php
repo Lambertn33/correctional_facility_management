@@ -38,4 +38,14 @@ class Prison extends Model
     {
         return $this->hasMany(Inmate::class, 'prison_id', 'id');
     }
+
+    /**
+     * Get all of the appointments for the Prison
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class, 'prison_id', 'id');
+    }
 }
