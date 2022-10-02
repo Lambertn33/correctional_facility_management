@@ -27,8 +27,21 @@
 	<link rel="stylesheet" href="/assets/css/dark-theme.css" />
 	<link rel="stylesheet" href="/assets/css/semi-dark.css" />
 	<link rel="stylesheet" href="/assets/css/header-colors.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 	<title>PRISONS MANAGEMENT</title>
 </head>
+
+<style>
+	.dataTables_length{
+		margin-bottom: 1.5rem;
+	}
+	.dataTable td {
+		padding: 0.9375rem 0.625rem !important;
+	}
+	.dataTable tr:last-child {
+		border-color: transparent;
+	}
+</style>
 
 <body>
 	<!--wrapper-->
@@ -119,7 +132,7 @@
                         <ul class="dropdown-menu">
                             <li> <a class="dropdown-item" href="#"><i class="bx bx-right-arrow-alt"></i>Approved Appointments</a>
                             </li>
-                            <li> <a class="dropdown-item" href="#"><i class="bx bx-right-arrow-alt"></i>Pending Appointments</a>
+                            <li> <a class="dropdown-item" href="{{route('getPendingAppointments')}}"><i class="bx bx-right-arrow-alt"></i>Pending Appointments</a>
                             </li>
                             <li> <a class="dropdown-item" href="#"><i class="bx bx-right-arrow-alt"></i>Rejected Appointments</a>
                             </li>
@@ -159,12 +172,10 @@
 	<script src="/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
 	<script src="/assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
 	<script src="/assets/js/dashboard-eCommerce.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
 	<!--app JS-->
 	<script src="/assets/js/app.js"></script>
-	<script>
-		new PerfectScrollbar('.product-list');
-		new PerfectScrollbar('.customers-list');
-	</script>
 </body>
 
 

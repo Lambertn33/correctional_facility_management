@@ -80,7 +80,7 @@
 							</div>
 						</div>
 						<hr/>
-						@if (count($currentPrisonAppointments) > 0)
+						@if (count($currentPrisonPendingAppointments) > 0)
                         <div class="table-responsive mb-4">
 							<table class="table align-middle mb-0">
 								<thead class="table-light">
@@ -93,7 +93,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach ($currentPrisonAppointments as $item)
+									@foreach ($currentPrisonPendingAppointments as $item)
                                     <tr>
 										<td>{{$item->names}}</td>
 										<td>{{$item->telephone}}</td>
@@ -105,10 +105,10 @@
 								</tbody>
 							</table>
 						</div>
-                        <a href="" class="btn btn-primary">View More</a>
+                        <a href="{{route('getPendingAppointments')}}" class="btn btn-primary">View More</a>
                         @else
                             <div class="d-flex">
-                                <h5 class="text-danger">No Available Inmates</h5>
+                                <h5 class="text-danger">No Available Pending Appointments</h5>
                             </div>
                         @endif
 					</div>

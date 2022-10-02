@@ -28,7 +28,7 @@ class DashboardController extends Controller
         $currentMonthAppointments = 0;
         $todayAppointments = 0;
         $currentPrisonInmates = $currentPrison->inmates()->get();
-        $currentPrisonAppointments = $currentPrison->appointments()->latest()->limit(5)->get();
+        $currentPrisonPendingAppointments = $currentPrison->appointments()->where('status', Appointment::PENDING)->latest()->limit(5)->get();
         $inmatesChart = $inmatesChart->build();
         foreach ($currentPrisonInmates as $inmate) {
             $currentMonthAppointments = $currentMonthAppointments + $inmate->appointments()->whereMonth('created_at', $currentMonth)->count();
@@ -43,7 +43,7 @@ class DashboardController extends Controller
           'inactiveInmates',
           'todayAppointments',
           'currentMonthAppointments',
-          'currentPrisonAppointments'
+          'currentPrisonPendingAppointments'
         ));
     }
 }
