@@ -78,6 +78,7 @@
                                                         <hr/>
                                                         <div class="card">
                                                             <div class="card-body">
+                                                                <h5>Appointment Information</h5>
                                                                 <ul class="list-group">
                                                                     <li class="list-group-item">Visitor Names: <b>{{$item->names}}</b></li>
                                                                     <li class="list-group-item">Visitor Telephone: <b>{{$item->telephone}}</b></li>
@@ -85,8 +86,20 @@
                                                                     <li class="list-group-item">Inmate Names: <b>{{$item->inmate->names}}</b></li>
                                                                     <li class="list-group-item">Inmate National ID: <b>{{$item->inmate->national_id}}</b></li>
                                                                     <li class="list-group-item">Requested Date: <b>{{$item->date}}</b></li>
-                                                                    <!--TO DO add time after Payment-->
                                                                 </ul>
+                                                                <hr>
+                                                                <h5>Payment Information</h5>
+                                                               <ul class="list-group">
+                                                                   <li class="list-group-item">Appointment Plan: <b>{{$item->tariff->amount}} RWFS -{{$item->tariff->time}} minutes</b></li>
+                                                                   <li class="list-group-item">Payment Status :
+                                                                    <!--TODO CHECK PAYMENT STATUS-->
+                                                                        @if ($item->payment)
+                                                                           <div class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i class="bx bxs-circle me-1"></i>Paid</div>
+                                                                        @else
+                                                                            <div class="badge rounded-pill text-warning bg-light-warning p-2 text-uppercase px-3"><i class="bx bxs-circle align-middle me-1"></i>Unpaid</div>
+                                                                        @endif
+                                                                   </li>
+                                                               </ul>
                                                             </div>
                                                         </div>
                                                     </div>
