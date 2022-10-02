@@ -23,6 +23,7 @@ Route::controller(AuthenticationController::class)->group(function (){
         Route::get('/','getLoginPage')->name('getLoginPage');
         Route::post('/','authenticate')->name('authenticate');
     });
+    Route::post('logout', [AuthenticationController::class,'logout'])->name('logout');
 });
 
 //Appointments Requests Routes

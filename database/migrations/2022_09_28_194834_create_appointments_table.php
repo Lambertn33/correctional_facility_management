@@ -20,7 +20,9 @@ return new class extends Migration
             $table->bigInteger('national_id');
             $table->uuid('inmate_id');
             $table->uuid('tariff_id');
+            $table->uuid('prison_id');
             $table->date('date');
+            $table->enum('status', \App\Models\Appointment::STATUS)->default(\App\Models\Appointment::PENDING);
             $table->timestamp('from')->nullable();
             $table->timestamp('to')->nullable();
             $table->timestamps();

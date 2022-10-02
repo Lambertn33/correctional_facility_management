@@ -26,7 +26,7 @@ class AuthenticationController extends Controller
             if ((new CheckUserRoleService)->isSuperAdministrator($authenticatedUser)) {
                 return redirect()->route('getSuperAdminDashboardOverview');
             } else {
-                if (!$authenticatedUser->admin->has_changed_password || $authenticatedUser->admin->has_changed_password == 0) {
+                if (!$authenticatedUser->admin->has_changed_password || $authenticatedUser->admin->password_expiration_days == 0) {
                     return 'need to update password';
                 } else {
                     return redirect()->route('getAdminDashboardOverview');
@@ -35,5 +35,11 @@ class AuthenticationController extends Controller
         } else {
             return back()->withInput()->with('error','Invalid credentials..');
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('getLoginPage');
     }
 }

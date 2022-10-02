@@ -35,6 +35,7 @@ class VisitorsController extends Controller
             }
             // Check if Inmate exists and has no appointment on the selected date
             $inmateToVisit = $checkInmateExistence->first();
+            $inmateToVisitPrison = $inmateToVisit->prison_id;
             $inmateToVisitId = $inmateToVisit->id;
             $checkInmateAppointment = Appointment::where('inmate_id', $inmateToVisitId)
             ->where('date', $data['visitDate']);
@@ -53,6 +54,7 @@ class VisitorsController extends Controller
                 'telephone' => $data['telephone'],
                 'national_id' => $data['nationalId'],
                 'inmate_id' => $inmateToVisitId,
+                'prison_id' => $inmateToVisitPrison, 
                 'tariff_id' => $data['tariff'],
                 'date' => $data['visitDate'],
                 'created_at' => now(),
