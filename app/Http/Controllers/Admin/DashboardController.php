@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Charts\Admin\InmatesChart;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Inmate;
 use App\Models\Appointment;
-use App\Models\Prison;
 use Carbon\Carbon;
 
 class DashboardController extends Controller

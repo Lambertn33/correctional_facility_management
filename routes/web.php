@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AppointmentsController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\InmatesController;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashboardController;
 use App\Http\Controllers\Visitors\VisitorsController;
@@ -69,5 +70,18 @@ Route::prefix('admin')->group(function() {
             Route::get('/', 'getRejectedAppointments')->name('getRejectedAppointments');
         });
 
+    });
+
+    //Inmates
+    Route::controller(InmatesController::class)->prefix('inmates')->group(function() {
+        Route::get('/' ,'getPrisonInmates')->name('getPrisonInmates'); 
+        Route::prefix('create')->group(function() {
+            Route::get('/' ,'createNewPrisonInmate')->name('createNewPrisonInmate'); 
+            Route::post('/' ,'saveNewPrisonInmate')->name('saveNewPrisonInmate'); 
+            Route::prefix('{inmate}')->group(function() {
+                Route::get('/', 'editPrisonInmate')->name('editPrisonInmate');
+                Route::put('/', 'updatePrisonInmate')->name('updatePrisonInmate');
+            });
+        });
     });
 });

@@ -52,6 +52,10 @@
 	#table-responsive_filter input, #table-responsive_length select{
 		border-radius: 1.25rem;
 	}
+
+	input:read-only {
+		background-color: #d9d9d9;
+	}
 </style>
 
 <body>
@@ -128,9 +132,9 @@
                             <div class="menu-title">Inmates</div>
                         </a>
                         <ul class="dropdown-menu">
-                            <li> <a class="dropdown-item" href="#"><i class="bx bx-right-arrow-alt"></i>Inmates List</a>
+                            <li> <a class="dropdown-item" href="{{route('getPrisonInmates')}}"><i class="bx bx-right-arrow-alt"></i>Inmates List</a>
                             </li>
-                            <li> <a class="dropdown-item" href="#"><i class="bx bx-right-arrow-alt"></i>Add New</a>
+                            <li> <a class="dropdown-item" href="{{route('createNewPrisonInmate')}}"><i class="bx bx-right-arrow-alt"></i>Add New</a>
                             </li>
                         </ul>
                     </li>
