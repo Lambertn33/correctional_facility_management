@@ -56,8 +56,8 @@
                                     <td>{{$item->inmate->inmate_code}}</td>
                                     <td>{{$item->date}}</td>
                                     <td>
-                                      <a href="#" class="text-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal"><b>View More</b></a>
-                                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <a href="#" class="text-danger"  data-bs-toggle="modal" data-bs-target=".bs-{{$item->id}}-details"><b>View More</b></a>
+                                      <div class="modal fade bs-{{$item->id}}-details"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
