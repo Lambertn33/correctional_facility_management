@@ -65,4 +65,14 @@ class Appointment extends Model
     {
         return $this->belongsTo(Prison::class, 'prison_id', 'id');
     }
+
+    /**
+     * Get the meeting associated with the Appointment
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function meeting(): HasOne
+    {
+        return $this->hasOne(Meeting::class, 'appointment_id', 'id');
+    }
 }

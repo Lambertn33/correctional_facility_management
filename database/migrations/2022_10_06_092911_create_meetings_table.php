@@ -15,12 +15,10 @@ return new class extends Migration
     {
         Schema::create('meetings', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->bigInteger('visitor_national_id');
-            $table->longText('visitor_token');
-            $table->uuid('inmate_id');
-            $table->longText('inmate_token');
+            $table->uuid('appointment_id');
             $table->string('room_id');
-            $table->bigInteger('meeting_time');
+            $table->longText('visitor_token');
+            $table->longText('inmate_token');
             $table->boolean('meeting_ended')->default(false);
             $table->timestamps();
         });

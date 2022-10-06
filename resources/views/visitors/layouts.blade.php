@@ -21,6 +21,12 @@
 	<title>Prisons</title>
 </head>
 
+<style>
+	.btn-text {
+		font-size: 1rem;
+	}
+</style>
+
 <body class="bg-forgot">
 	<!-- wrapper -->
 	<div class="wrapper">
@@ -43,7 +49,30 @@
 				</div>
 			</div>
 		</nav>
-		@yield('content')
+		<div class="error-404 d-flex align-items-center justify-content-center">
+			<div class="container">
+				<div class="card py-5">
+					<div class="row g-0">
+						<div class="col col-xl-5">
+							<div class="card-body p-4">
+								<h2 class="font-weight-bold" style="text-align: center"><b>Inmates Appointment Request</b></h2>
+								<br>
+								<marquee direction="up" scrollamount="2">
+									<p>- Establishing relationships with one's family, friends, and various service providers.</p>
+									<p>- Contributing to both the emotional and physical wellness of inmates.</p>
+									<p>- Increasing access to resources and counsel in both the civil and criminal judicial systems.</p>
+									<p>- Making it possible for government processes to be more user-friendly, and productive.</p>
+								</marquee>
+							</div>
+						</div>
+						<div class="col-xl-6">
+							@yield('content')
+						</div>
+					</div>
+				</div>
+					<!--end row-->
+			</div>
+		</div>
 		<div class="bg-white p-3 fixed-bottom border-top shadow">
 			<div class="d-flex align-items-center justify-content-between flex-wrap">
 				<p class="mb-0">Copyright © <script>document.write(new Date().getFullYear())</script>. All right reserved.</p>

@@ -39,17 +39,12 @@ class CreateRoom implements ShouldQueue
         $createRoom = (new RoomsService)->createMeetingRoom($this->appointment);
         $createdRoomResponse = json_decode($createRoom, TRUE);
         $createdRoomId = $createdRoomResponse['id'];
-        $createdRoomName = $createdRoomResponse['name'];
         Meeting::create([
             'id' => Str::uuid()->toString(),
-            'meeting_name' => $createdRoomName,
-            'visitor_national_id' => $this->appointment->national_id,
-            'visitor_token' => (new TokensGenerating)->generateToken(false),
-            'inmate_id' => $this->appointment->inmate->id,
-            'inmate_national_id' => $this->appointment->inmate->national_id,
-            'inmate_token' => (new TokensGenerating)->generateToken(false),
+            'appointment_id' => $this->appointment->id,
             'room_id' => $createdRoomId,
-            'meeting_time' => $this->appointment->tariff->time,
+            'visitor_token' => (new TokensGenerating)->generateToken(false),
+            'inmate_token' => (new TokensGenerating)->generateToken(false)
         ]);
     }
 }
