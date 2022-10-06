@@ -3,11 +3,12 @@
  use Firebase\JWT\JWT;
  use Illuminate\Support\Str;
  use DateTimeImmutable;
+ use Ramsey\Uuid\Uuid;
  require __DIR__ . '../../../../../../vendor/autoload.php';
 
  class TokensGenerating {
     
-    public function generateToken($isManagementToken) {
+    public function generateToken($isManagementToken, $isInmate, $room=null) {
         $token = "";
 
         if ($isManagementToken) {
@@ -20,7 +21,7 @@
                 'access_key' => $app_access_key,
                 'type' => 'management',
                 'version' => 2,
-                'jti' => Str::uuid()->toString(),
+                'jti' => Uuid::uuid4()->toString(),
                 'iat'  => $issuedAt->getTimestamp(),
                 'nbf'  => $issuedAt->getTimestamp(),
                 'exp'  => $expire,
@@ -32,8 +33,8 @@
             $app_secret = env('100MS_APP_SECRET');
             $version   = 2;
             $type      = "app";
-            $role      = "new-role-9900";
-            $roomId    = "633c32bce08863a3f2f7facf";
+            $role      = $isInmate ? "prisoner" : "visitor";
+            $roomId    = $room;
             $userId    = "123";
             $issuedAt   = new DateTimeImmutable();
             $expire     = $issuedAt->modify('+24 hours')->getTimestamp();
@@ -44,7 +45,7 @@
                 'exp'  => $expire,
                 'access_key' => $app_access_key,
                 'type' => $type,
-                'jti' => Str::uuid()->toString(),
+                'jti' => Uuid::uuid4()->toString(),
                 'version' => $version,
                 'role' => $role,
                 'room_id' => $roomId,

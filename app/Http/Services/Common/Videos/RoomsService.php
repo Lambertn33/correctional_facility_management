@@ -9,7 +9,7 @@ use DateTimeImmutable;
  class RoomsService {
     
     public function createMeetingRoom($pendingAppointment) {
-        $managementToken = (new TokensGenerating)->generateToken(true);
+        $managementToken = (new TokensGenerating)->generateToken(true, false);
         return Http::withHeaders([
             'Authorization' => 'Bearer '.$managementToken.'',
         ])->acceptJson()

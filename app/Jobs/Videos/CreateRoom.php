@@ -43,8 +43,8 @@ class CreateRoom implements ShouldQueue
             'id' => Str::uuid()->toString(),
             'appointment_id' => $this->appointment->id,
             'room_id' => $createdRoomId,
-            'visitor_token' => (new TokensGenerating)->generateToken(false),
-            'inmate_token' => (new TokensGenerating)->generateToken(false)
+            'visitor_token' => (new TokensGenerating)->generateToken(false, false, $createdRoomId),
+            'inmate_token' => (new TokensGenerating)->generateToken(false, true, $createdRoomId)
         ]);
     }
 }
