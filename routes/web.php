@@ -6,7 +6,11 @@ use App\Http\Controllers\Admin\InmatesController;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashboardController;
 use App\Http\Controllers\Visitors\VisitorsController;
+use App\Http\Services\Common\Videos\TokensGenerating;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
+use Firebase\JWT\JWT;
+require __DIR__ . '../../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +35,10 @@ Route::controller(AuthenticationController::class)->group(function (){
 //Appointments Requests Routes
 Route::controller(VisitorsController::class)->group(function() {
     Route::get('/', 'getHomePage')->name('getHomePage');
-    Route::post('/', 'requestAppointment')->name('requestAppointment');
+    Route::prefix('appointments')->group(function() {
+        Route::get('/','getAppointmentsPage')->name('getAppointmentsPage');
+        Route::post('/', 'requestAppointment')->name('requestAppointment');        
+    });
 });
 
 //SuperAdmin Routes

@@ -7,10 +7,13 @@
             <div class="row g-0">
                 <div class="col col-xl-5">
                     <div class="card-body p-4">
-                        <h4 class="font-weight-bold display-6">Welcome To Inmates Appointment Request</h4>
-                        <p>Make an inmate visit appointment in just few clicks 
-                            <br>Description 2
-                            <br>Description 3</p>
+                        <h6 class="font-weight-bold display-6">Inmates Appointment Request</h6>
+                        <marquee direction="up" scrollamount="2">
+                            <p>Establishing relationships with one's family, friends, and various service providers.</p>
+                            <p>Contributing to both the emotional and physical wellness of inmates.</p>
+                            <p>Increasing access to resources and counsel in both the civil and criminal judicial systems.</p>
+                            <p>Making it possible for government processes to be more user-friendly, and productive.</p>
+                        </marquee>
                     </div>
                 </div>
                 <div class="col-xl-6">
@@ -105,6 +108,8 @@
                                 <div class="col-12">
                                     <div class="d-grid">
                                        <button type="submit" class="btn btn-primary btn-lg px-md-5 radius-30">Request Appointment</button>
+                                       <br>
+                                       <a href="/" class="btn btn-success btn-lg px-md-5 radius-30">Already Have an Appointment?</a>
                                     </div>
                                 </div>
                             </div> 

@@ -17,6 +17,11 @@ class VisitorsController extends Controller
 {
     public function  getHomePage()
     {
+        return view('visitors.index');
+    }
+    
+    public function getAppointmentsPage()
+    {
         $allPrisons = Prison::get();
         $allTariffs = Tariff::get();
         return view('visitors.appointmentRequest', compact('allPrisons', 'allTariffs'));

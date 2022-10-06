@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.0.2",
         "arielmejiadev/larapex-charts": "^5.1",
+        "firebase/php-jwt": "^6.3",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
