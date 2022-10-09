@@ -89,17 +89,19 @@
                                                                 </ul>
                                                                 <hr>
                                                                 <h5>Payment Information</h5>
+                                                               @if ($item->tariff)
                                                                <ul class="list-group">
-                                                                   <li class="list-group-item">Appointment Plan: <b>{{$item->tariff->amount}} RWFS -{{$item->tariff->time}} minutes</b></li>
-                                                                   <li class="list-group-item">Payment Status :
-                                                                    <!--TODO CHECK PAYMENT STATUS-->
-                                                                        @if ($item->payment)
-                                                                           <div class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i class="bx bxs-circle me-1"></i>Paid</div>
-                                                                        @else
-                                                                            <div class="badge rounded-pill text-warning bg-light-warning p-2 text-uppercase px-3"><i class="bx bxs-circle align-middle me-1"></i>Unpaid</div>
-                                                                        @endif
-                                                                   </li>
-                                                               </ul>
+                                                                <li class="list-group-item">Appointment Plan: <b>{{$item->tariff->amount}} RWFS -{{$item->tariff->time}} minutes</b></li>
+                                                                <li class="list-group-item">Payment Status :
+                                                                 <!--TODO CHECK PAYMENT STATUS-->
+                                                                     @if ($item->payment)
+                                                                        <div class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i class="bx bxs-circle me-1"></i>Paid</div>
+                                                                     @else
+                                                                         <div class="badge rounded-pill text-warning bg-light-warning p-2 text-uppercase px-3"><i class="bx bxs-circle align-middle me-1"></i>Unpaid</div>
+                                                                     @endif
+                                                                </li>
+                                                            </ul>
+                                                               @endif
                                                             </div>
                                                         </div>
                                                     </div>

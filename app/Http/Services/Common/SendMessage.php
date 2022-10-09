@@ -9,7 +9,7 @@
             'Authorization' => 'Bearer '.env("SMS_TOKEN").'',
         ])->acceptJson()
         ->post(''.env("SMS_URL").'', [
-           'sender' => 'UMURINZI',
+           'sender' => 'E-HUZA',
             'to' => '+'.$telephone,
             'text' => $message
         ]);

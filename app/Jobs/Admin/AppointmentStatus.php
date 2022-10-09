@@ -41,8 +41,8 @@ class AppointmentStatus implements ShouldQueue
         $names = $this->appointment->names;
         $inmateNames = $this->inmate->names;
         $message = $this->isAppointmentApproved
-                   ? 'Dear '.$names.' Your appointment request to meet with '. $inmateNames .' has been approved.. please proceed with the payment process'
-                   : 'Dear '.$names.' Your appointment request to meet with '. $inmateNames .' has been rejected... please request another appointment';
+                   ? 'Dear '.$names.' Your request to e-meet '. $inmateNames .' has been approved.. please proceed the payment'
+                   : 'Dear '.$names.' Your request to e-meet '. $inmateNames .' has been rejected... request next time';
 
         (new SendMessage)->sendMessage($telephone, $message);
     }

@@ -40,8 +40,8 @@ class AppointmentReceived implements ShouldQueue
         $inmateNames = $this->inmate->names;
         $inmateNationalId = $this->inmate->national_id;
         $prison = $this->inmate->prison->name;
-        $message = 'Dear '.$names.' Your appointment request to meet with '. $inmateNames .' with national ID of
-         '. $inmateNationalId .' imprisoned in ' . $prison . ' has been received... we will get back to you soon';
+        $message = 'Dear '.$names.' Your appointment request to e-meet '. $inmateNames .' with an ID 
+        '. $inmateNationalId .' located in ' . $prison . ' has been received... we will get back to you soon';
 
         (new SendMessage)->sendMessage($telephone, $message);
     }

@@ -4,9 +4,14 @@ use App\Http\Controllers\Admin\AppointmentsController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\InmatesController;
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\Common\MeetingsController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashboardController;
 use App\Http\Controllers\Visitors\VisitorsController;
+use App\Http\Services\Common\Videos\TokensGenerating;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
+use Firebase\JWT\JWT;
+require __DIR__ . '../../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +33,19 @@ Route::controller(AuthenticationController::class)->group(function (){
     Route::post('logout', [AuthenticationController::class, 'logout'])->name('logout');
 });
 
+Route::controller(MeetingsController::class)->prefix('meetings')->group(function() {
+    Route::get('/', 'getMeetingPage')->name('getMeetingPage');
+    Route::post('/', 'provideNationalId')->name('provideNationalId');
+    Route::get('/join','joinMeeting')->name('joinMeeting');
+});
+
 //Appointments Requests Routes
 Route::controller(VisitorsController::class)->group(function() {
     Route::get('/', 'getHomePage')->name('getHomePage');
-    Route::post('/', 'requestAppointment')->name('requestAppointment');
+    Route::prefix('appointments')->group(function() {
+        Route::get('/','getAppointmentsPage')->name('getAppointmentsPage');
+        Route::post('/', 'requestAppointment')->name('requestAppointment');        
+    });
 });
 
 //SuperAdmin Routes

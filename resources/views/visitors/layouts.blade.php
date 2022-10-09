@@ -21,24 +21,64 @@
 	<title>Prisons</title>
 </head>
 
+<style>
+	.btn-text {
+		font-size: 1rem;
+	}
+</style>
+
 <body class="bg-forgot">
 	<!-- wrapper -->
 	<div class="wrapper">
 		<nav class="navbar navbar-expand-lg navbar-light bg-white rounded fixed-top rounded-0 shadow-sm">
 			<div class="container-fluid">
+				<a class="navbar-brand" href="#">
+					{{-- <img src="/assets/images/logo-e-huza.png" width="80" alt=""> --}}
+				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent1">
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-						<li class="nav-item"> <a class="nav-link active" aria-current="page" href="{{route('getHomePage')}}"><i class='bx bx-home-alt me-1'></i>Make Appointment</a>
+						<li class="nav-item"> <a class="nav-link active" aria-current="page" href="{{route('getHomePage')}}"><i class='bx bx-home-alt me-1'></i>Home</a>
 						</li>
-						<li class="nav-item"> <a class="nav-link" aria-current="page" href="{{route('getLoginPage')}}"><i class='bx bx-log-in me-1'></i>Authentication</a>
+						<li class="nav-item"> <a class="nav-link active" aria-current="page" href="{{route('getAppointmentsPage')}}"><i class='bx bx-home-alt me-1'></i>Appointments</a>
+						</li>
+						<li class="nav-item"> <a class="nav-link active" aria-current="page" href="{{route('getLoginPage')}}"><i class='bx bx-log-in me-1'></i>Login</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-		@yield('content')
+		<div class="error-404 d-flex align-items-center justify-content-center">
+			<div class="container">
+				<div class="card py-5">
+					<div class="row g-0">
+						<div class="col col-xl-5">
+							<div class="card-body p-4">
+								{{-- <h2 class="font-weight-bold" style="text-align: center"><b>Inmates Appointment Request</b></h2> --}}
+								<div style="text-align: center;">
+									<img src="/assets/images/logo-e-huza.png" width="240">
+								</div>
+								<br>
+								<p style="font-size: 2.25rem;text-align:center;">Establishing relationships with inmate's family, friends, and various service providers. <br>
+									
+								</p>
+								@if (\Request::route()->getName() === 'getHomePage')
+									<div style="text-align:center">
+										<a href="{{route('getAppointmentsPage')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Request Appointment</a><br><br>
+										<a href="{{route('provideNationalId')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Join Video</a>
+									</div>
+								@endif
+							</div>
+						</div>
+						<div class="col-xl-6" style="display: flex;align-items:center;justify-content:center;">
+							@yield('content')
+						</div>
+					</div>
+				</div>
+					<!--end row-->
+			</div>
+		</div>
 		<div class="bg-white p-3 fixed-bottom border-top shadow">
 			<div class="d-flex align-items-center justify-content-between flex-wrap">
 				<p class="mb-0">Copyright © <script>document.write(new Date().getFullYear())</script>. All right reserved.</p>
