@@ -33,7 +33,7 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-white rounded fixed-top rounded-0 shadow-sm">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#">
-					<img src="/assets/images/logo-e-huza.png" width="80" alt="">
+					{{-- <img src="/assets/images/logo-e-huza.png" width="80" alt=""> --}}
 				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
 				</button>
@@ -43,7 +43,7 @@
 						</li>
 						<li class="nav-item"> <a class="nav-link active" aria-current="page" href="{{route('getAppointmentsPage')}}"><i class='bx bx-home-alt me-1'></i>Appointments</a>
 						</li>
-						<li class="nav-item"> <a class="nav-link active" aria-current="page" href="{{route('getLoginPage')}}"><i class='bx bx-log-in me-1'></i>Authentication</a>
+						<li class="nav-item"> <a class="nav-link active" aria-current="page" href="{{route('getLoginPage')}}"><i class='bx bx-log-in me-1'></i>Login</a>
 						</li>
 					</ul>
 				</div>
@@ -55,17 +55,28 @@
 					<div class="row g-0">
 						<div class="col col-xl-5">
 							<div class="card-body p-4">
-								<h2 class="font-weight-bold" style="text-align: center"><b>Inmates Appointment Request</b></h2>
+								{{-- <h2 class="font-weight-bold" style="text-align: center"><b>Inmates Appointment Request</b></h2> --}}
+								<div style="text-align: center;">
+									<img src="/assets/images/logo-e-huza.png" width="240">
+								</div>
 								<br>
-								<marquee direction="up" scrollamount="2">
-									<p>- Establishing relationships with one's family, friends, and various service providers.</p>
-									<p>- Contributing to both the emotional and physical wellness of inmates.</p>
+								<p style="font-size: 2.25rem;text-align:center;">Establishing relationships with inmate's family, friends, and various service providers. <br>
+									
+								</p>
+								@if (Request::is('getHomePage'))
+								<div style="text-align:center">
+									<a href="{{route('getAppointmentsPage')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Request Appointment</a><br><br>
+									<a href="{{route('provideNationalId')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Join Video</a>
+								</div>
+								@endif
+								<marquee direction="left" scrollamount="2">
+									{{-- <p>- Contributing to both the emotional and physical wellness of inmates.</p>
 									<p>- Increasing access to resources and counsel in both the civil and criminal judicial systems.</p>
-									<p>- Making it possible for government processes to be more user-friendly, and productive.</p>
+									<p>- Making it possible for government processes to be more user-friendly, and productive.</p> --}}
 								</marquee>
 							</div>
 						</div>
-						<div class="col-xl-6">
+						<div class="col-xl-6" style="display: flex;align-items:center;justify-content:center;">
 							@yield('content')
 						</div>
 					</div>

@@ -93,7 +93,7 @@
                 <div class="d-grid">
                    <button type="submit" class="btn btn-primary btn-lg px-md-5 radius-30 btn-text">Request appointment</button>
                    <br>
-                   <a href="{{route('getMeetingPage')}}" class="btn btn-success btn-lg px-md-5 radius-30 btn-text">Already have an appointment?</a>
+                   <a href="{{route('getMeetingPage')}}" class="btn btn-success btn-lg px-md-5 radius-30 btn-text">Join Video</a>
                 </div>
             </div>
         </div> 
