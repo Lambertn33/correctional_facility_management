@@ -84,6 +84,12 @@ Route::prefix('admin')->group(function() {
             Route::get('/', 'getRejectedAppointments')->name('getRejectedAppointments');
         });
 
+        //outgoing appointments
+        Route::prefix('outgoing')->group(function() {
+            Route::get('/','createOutgoingAppointment')->name('createOutgoingAppointment');
+            Route::post('/','sendOutgoingAppointmentRequest')->name('sendOutgoingAppointmentRequest');
+        });
+
     });
 
     //Inmates

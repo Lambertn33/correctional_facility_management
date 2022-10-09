@@ -142,7 +142,7 @@
                         <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
                             <div class="parent-icon"><i class='bx bx-folder'></i>
                             </div>
-                            <div class="menu-title">Appointments</div>
+                            <div class="menu-title"> Incoming Appointments</div>
                         </a>
                         <ul class="dropdown-menu">
                             <li> <a class="dropdown-item" href="{{route('getApprovedAppointments')}}"><i class="bx bx-right-arrow-alt"></i>Approved Appointments</a>
@@ -150,6 +150,17 @@
                             <li> <a class="dropdown-item" href="{{route('getPendingAppointments')}}"><i class="bx bx-right-arrow-alt"></i>Pending Appointments</a>
                             </li>
                             <li> <a class="dropdown-item" href="{{route('getRejectedAppointments')}}"><i class="bx bx-right-arrow-alt"></i>Rejected Appointments</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
+                            <div class="parent-icon"><i class='bx bx-folder'></i>
+                            </div>
+                            <div class="menu-title"> Outgoing Appointments</div>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li> <a class="dropdown-item" href="{{route('createOutgoingAppointment')}}"><i class="bx bx-right-arrow-alt"></i>Request Appointment</a>
                             </li>
                         </ul>
                     </li>
