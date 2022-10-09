@@ -63,17 +63,12 @@
 								<p style="font-size: 2.25rem;text-align:center;">Establishing relationships with inmate's family, friends, and various service providers. <br>
 									
 								</p>
-								@if (Request::is('getHomePage'))
-								<div style="text-align:center">
-									<a href="{{route('getAppointmentsPage')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Request Appointment</a><br><br>
-									<a href="{{route('provideNationalId')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Join Video</a>
-								</div>
+								@if (\Request::route()->getName() === 'getHomePage')
+									<div style="text-align:center">
+										<a href="{{route('getAppointmentsPage')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Request Appointment</a><br><br>
+										<a href="{{route('provideNationalId')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Join Video</a>
+									</div>
 								@endif
-								<marquee direction="left" scrollamount="2">
-									{{-- <p>- Contributing to both the emotional and physical wellness of inmates.</p>
-									<p>- Increasing access to resources and counsel in both the civil and criminal judicial systems.</p>
-									<p>- Making it possible for government processes to be more user-friendly, and productive.</p> --}}
-								</marquee>
 							</div>
 						</div>
 						<div class="col-xl-6" style="display: flex;align-items:center;justify-content:center;">
