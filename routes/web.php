@@ -8,7 +8,6 @@ use App\Http\Controllers\Common\MeetingsController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashboardController;
 use App\Http\Controllers\Visitors\VisitorsController;
 use Illuminate\Support\Facades\Route;
-require __DIR__ . '../../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
