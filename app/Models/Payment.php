@@ -15,7 +15,7 @@ class Payment extends Model
     const FAILED = self::STATUS[1];
     const SUCCEEDED = self::STATUS[2];
     protected $fillable = [
-        'id', 'appointment_id', 'tariff_id', 'status'
+        'id', 'appointment_id', 'tariff_id', 'status', 'transaction_id'
     ];
 
     protected $casts = [

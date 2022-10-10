@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('tariff_id');
             $table->uuid('appointment_id');
+            $table->string('transaction_id');
             $table->enum('status', \App\Models\Payment::STATUS)->default(\App\Models\Payment::PENDING);
             $table->timestamps();
         });
