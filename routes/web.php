@@ -7,10 +7,7 @@ use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\Common\MeetingsController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashboardController;
 use App\Http\Controllers\Visitors\VisitorsController;
-use App\Http\Services\Common\Videos\TokensGenerating;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
-use Firebase\JWT\JWT;
 require __DIR__ . '../../vendor/autoload.php';
 
 /*

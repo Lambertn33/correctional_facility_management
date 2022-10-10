@@ -58,6 +58,8 @@ class InmatesController extends Controller
                 'names' => $data['names'],
                 'in_date' => $data['date'],
                 'prison_id' => $currentPrison->id,
+                'father_names' => $data['father_names'],
+                'mother_names' => $data['mother_names'],
                 'inmate_code' => $data['code'],
                 'reason' => $data['reason'],
                 'created_at' => now(),

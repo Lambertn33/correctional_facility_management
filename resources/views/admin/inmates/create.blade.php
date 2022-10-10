@@ -54,6 +54,14 @@
                                 id="inputLastName">
                             </div>
                             <div class="col-md-6">
+                                <label for="inputFirstName" class="form-label">Father Names</label>
+                                <input type="text" name="father_names" required class="form-control" id="inputFirstName" value="{{old('father_names')}}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputFirstName" class="form-label">Mother Names</label>
+                                <input type="text" name="mother_names" required class="form-control" id="inputFirstName" value="{{old('mother_names')}}">
+                            </div>
+                            <div class="col-md-6">
                                 <label for="inputFirstName" class="form-label">Inmate Code</label>
                                 <input type="text" name="code"  value="{{old('code')}}" required class="form-control" id="inputFirstName">
                             </div>

@@ -82,6 +82,8 @@
                                                       <div class="card">
                                                           <div class="card-body">
                                                               <ul class="list-group">
+                                                                  <li class="list-group-item">Father Names: <b>{{$item->father_names}}</b></li>
+                                                                  <li class="list-group-item">Mother Names: <b>{{$item->mother_names}}</b></li>
                                                                   <li class="list-group-item">Reason: <b>{{$item->reason}}</b></li>
                                                                   <li class="list-group-item">In Date: <b>{{$item->in_date}}</b></li>
                                                               </ul>

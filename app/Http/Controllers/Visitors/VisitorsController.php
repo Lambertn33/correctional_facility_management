@@ -32,16 +32,59 @@ class VisitorsController extends Controller
         $phoneFormat = 2507;
         $phoneTotalDigits = 12;
         $data = $request->all();
-        $checkInmateExistence = Inmate::where('national_id', $data['inmateNationalId'])->where('status', \App\Models\Inmate::ACTIVE);
+        if (!(new ValidateInputs)->validatePhoneNumber($data['telephone'], $phoneFormat, $phoneTotalDigits)) {
+            return back()->withInput()->with('error','The Telephone number must start with '. $phoneFormat .'... and consists of '.$phoneTotalDigits.' digits');
+        }
         try {
             DB::beginTransaction();
-            if (!$checkInmateExistence->exists()) {
-                return back()->withInput()->with('error','There is no inmate with such national ID');
+            $query = Inmate::where('prison_id', $data['prison'])
+            ->where('names', 'LIKE', '%' .$data['inmate_names']. '%')
+            ->where('status', \App\Models\Inmate::ACTIVE);
+            
+            if ($data['father_names'] && $data['mother_names'] && $data['inmateNationalId']) {
+                $query = $query
+                ->where('father_names', 'LIKE', '%' .$data['father_names']. '%')
+                ->where('mother_names', 'LIKE', '%' .$data['mother_names']. '%')
+                ->where('national_id', 'LIKE', '%' .$data['inmateNationalId']. '%');
             }
-            // Check if Inmate exists and has no appointment on the selected date
-            $inmateToVisit = $checkInmateExistence->first();
+            if ($data['father_names'] && $data['mother_names'] && !$data['inmateNationalId']) {
+                $query = $query
+                ->where('father_names', 'LIKE', '%' .$data['father_names']. '%')
+                ->where('mother_names', 'LIKE', '%' .$data['mother_names']. '%');
+            }
+            if ($data['father_names'] && !$data['mother_names'] && $data['inmateNationalId']) {
+                $query = $query
+                ->where('father_names', 'LIKE', '%' .$data['father_names']. '%')
+                ->where('national_id', 'LIKE', '%' .$data['inmateNationalId']. '%');
+            }
+            if (!$data['father_names'] && $data['mother_names'] && $data['inmateNationalId']) {
+                $query = $query
+                ->where('mother_names', 'LIKE', '%' .$data['mother_names']. '%')
+                ->where('national_id', 'LIKE', '%' .$data['inmateNationalId']. '%');
+            }
+            if (!$data['father_names'] && !$data['mother_names'] && $data['inmateNationalId']) {
+                $query = $query
+                ->where('national_id', 'LIKE', '%' .$data['inmateNationalId']. '%');
+            }
+            if (!$data['father_names'] && $data['mother_names'] && !$data['inmateNationalId']) {
+                $query = $query
+                ->where('mother_names', 'LIKE', '%' .$data['mother_names']. '%');
+            }
+            if ($data['father_names'] && !$data['mother_names'] && !$data['inmateNationalId']) {
+                $query = $query
+                ->where('father_names', 'LIKE', '%' .$data['father_names']. '%');
+            }
+            if (!$data['father_names'] && !$data['mother_names'] && !$data['inmateNationalId']) {
+                $query = $query;
+            }
+            if (count($query->get()) == 0) {
+                return back()->withInput()->with('error','there is no inmate with such information you provided');
+            }
+            $inmateToVisit = $query->first();
             $inmateToVisitPrison = $inmateToVisit->prison_id;
             $inmateToVisitId = $inmateToVisit->id;
+
+            // Check if Inmate exists and has no appointment on the selected date
             $checkInmateAppointment = Appointment::where('inmate_id', $inmateToVisitId)
             ->where('date', $data['visitDate']);
 
@@ -52,8 +95,13 @@ class VisitorsController extends Controller
             if (!(new ValidateInputs)->validatePhoneNumber($data['telephone'], $phoneFormat, $phoneTotalDigits)) {
                 return back()->withInput()->with('error','The Telephone number must start with '. $phoneFormat .'... and consists of '.$phoneTotalDigits.' digits');
             }
-            if (!(new ValidateInputs)->validateNationalIDLength($data['nationalId']) || !(new ValidateInputs)->validateNationalIDLength($data['inmateNationalId'])) {
+            if (!(new ValidateInputs)->validateNationalIDLength($data['nationalId'])) {
                 return back()->withInput()->with('error','The national ID Must consists of 16 digits');
+            }
+            if ($data['inmateNationalId']) {
+                if (!(new ValidateInputs)->validateNationalIDLength($data['inmateNationalId'])) {
+                    return back()->withInput()->with('error','The national ID Must consists of 16 digits');
+                }
             }
             
             $newAppointment = [
@@ -74,6 +122,7 @@ class VisitorsController extends Controller
             dispatch(new AppointmentReceived($newAppointment, $inmateToVisit));
             return back()->with('success', 'appointment made successfully... you will get a confirmation SMS');
         } catch (\Throwable $th) {
+            throw $th;
             DB::rollback();
             return back()->withInput()->with('error','an error occured....please try again');
         }
