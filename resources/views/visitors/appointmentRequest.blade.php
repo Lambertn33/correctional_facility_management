@@ -1,5 +1,21 @@
 @extends('visitors.layouts')
 
+<style>
+    form {
+        max-height: 50vh;
+        overflow: auto;
+    }
+    ::-webkit-scrollbar {
+        width: 0.4375rem;
+        border: 0.0625rem solid transparent;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: gray; 
+        border-radius: 3.125rem;
+    }
+</style>
+
 @section('content')
 <form action="{{route('requestAppointment')}}" method="post">
     @if (Session::has('error'))
@@ -43,27 +59,69 @@
             </div>
 
             <div class="col-md-6">
-              <label for="inputNationalId" class="form-label">National ID</label>
-              <input 
-              type="number"
-              maxlength="16"
-              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)"
-              minlength="16" 
-              class="form-control" 
-              required id="inputNationalId" 
-              placeholder="Enter your national ID" 
-              name="nationalId"
-              value="{{old('nationalId')}}"
-              >
+                <label for="inputNationalId" class="form-label">Your National ID</label>
+                <input 
+                type="number"
+                maxlength="16"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)"
+                minlength="16" 
+                class="form-control" 
+                required id="inputNationalId" 
+                placeholder="Enter your national ID" 
+                name="nationalId"
+                value="{{old('nationalId')}}"
+                >
+              </div>
+
+              <div class="col-md-6">
+                <label for="inputNames" class="form-label">Inmate Names</label>
+                <input
+                type="text" 
+                class="form-control" 
+                required id="inputNames" 
+                placeholder="Enter Inmate names" 
+                name="inmate_names"
+                value="{{old('inmate_names')}}"
+                >
+            </div>
+
+            <div class="col-md-6">
+                <label for="inputNames" class="form-label">Inmate Father Names</label>
+                <input
+                type="text" 
+                class="form-control"  id="inputNames" 
+                placeholder="Enter Inmate Father names" 
+                name="father_names"
+                value="{{old('father_names')}}"
+                >
+            </div>
+            <div class="col-md-6">
+                <label for="inputNames" class="form-label">Inmate Mother Names</label>
+                <input
+                type="text" 
+                class="form-control" id="inputNames" 
+                placeholder="Enter Inmate Mother names" 
+                name="mother_names"
+                value="{{old('mother_names')}}"
+                >
+            </div>
+
+            <div class="col-md-6">
+                <label for="inputPrison" class="form-label">Select Prison</label>
+                <select class="form-select" id="inputPrison" required name="prison">
+                  <option selected disabled value="">Select Prison</option>
+                  @foreach ($allPrisons as $item)
+                      <option {{$item->id === old('prison') ? 'selected': ''}} value="{{$item->id}}">{{$item->name}}</option>
+                  @endforeach
+                </select>
             </div>
 
             <div class="col-md-6">
                 <label for="inputInmateId" class="form-label">Inmate National ID</label>
                 <input type="number"
                  maxlength="16"
-                 required
                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                 class="form-control" required maxlength="16" minlength="16" 
+                 class="form-control" maxlength="16" minlength="16" 
                  id="inputInmateId" 
                  name="inmateNationalId" 
                  value="{{old('inmateNationalId')}}"
@@ -87,7 +145,7 @@
                       <option {{$item->id === old('tariff') ? 'selected': ''}} value="{{$item->id}}">{{$item->time}}mins ({{$item->amount}}FRWS)</option>
                   @endforeach
                 </select>
-              </div>
+            </div>
 
             <div class="col-12">
                 <div class="d-grid">

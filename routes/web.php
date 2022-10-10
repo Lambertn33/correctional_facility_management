@@ -7,10 +7,7 @@ use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\Common\MeetingsController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashboardController;
 use App\Http\Controllers\Visitors\VisitorsController;
-use App\Http\Services\Common\Videos\TokensGenerating;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
-use Firebase\JWT\JWT;
 require __DIR__ . '../../vendor/autoload.php';
 
 /*
@@ -82,6 +79,12 @@ Route::prefix('admin')->group(function() {
         //Rejected Appointments
         Route::prefix('rejected')->group(function() {
             Route::get('/', 'getRejectedAppointments')->name('getRejectedAppointments');
+        });
+
+        //outgoing appointments
+        Route::prefix('outgoing')->group(function() {
+            Route::get('/','createOutgoingAppointment')->name('createOutgoingAppointment');
+            Route::post('/','sendOutgoingAppointmentRequest')->name('sendOutgoingAppointmentRequest');
         });
 
     });

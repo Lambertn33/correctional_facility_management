@@ -17,7 +17,7 @@ class Inmate extends Model
     const INACTIVE = self::STATUS[1];
 
     protected $fillable = [
-        'id', 'names', 'national_id', 'prison_id', 'in_date', 'inmate_code', 'reason', 'status'
+        'id', 'names', 'national_id','father_names','mother_names','prison_id', 'in_date', 'inmate_code', 'reason', 'status'
     ];
 
     protected $casts = [

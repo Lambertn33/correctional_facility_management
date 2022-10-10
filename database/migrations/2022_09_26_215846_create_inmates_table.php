@@ -17,6 +17,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->bigInteger('national_id')->unique();
             $table->string('names');
+            $table->string('father_names');
+            $table->string('mother_names');
             $table->uuid('prison_id');
             $table->date('in_date');
             $table->string('inmate_code')->unique();
