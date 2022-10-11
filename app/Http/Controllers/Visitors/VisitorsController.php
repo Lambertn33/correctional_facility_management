@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Visitors;
 
+use App\Events\AppointmentRequested;
 use App\Http\Controllers\Controller;
 use App\Http\Services\Common\ValidateInputs;
 use App\Jobs\Visitor\AppointmentReceived;
@@ -83,6 +84,7 @@ class VisitorsController extends Controller
             $inmateToVisit = $query->first();
             $inmateToVisitPrison = $inmateToVisit->prison_id;
             $inmateToVisitId = $inmateToVisit->id;
+            $tariff = Tariff::find($data['tariff']);
 
             // Check if Inmate exists and has no appointment on the selected date
             $checkInmateAppointment = Appointment::where('inmate_id', $inmateToVisitId)
@@ -116,10 +118,11 @@ class VisitorsController extends Controller
                 'created_at' => now(),
                 'updated_at' => now()
             ];
-            Appointment::insert($newAppointment);
-            DB::commit();
-            // Send Confirmation SMS to The User
-            dispatch(new AppointmentReceived($newAppointment, $inmateToVisit));
+
+            AppointmentRequested::dispatch($newAppointment, $inmateToVisit, $tariff);
+             DB::commit();
+            // // Send Confirmation SMS to The User
+            // dispatch(new AppointmentReceived($newAppointment, $inmateToVisit));
             return back()->with('success', 'appointment made successfully... you will get a confirmation SMS');
         } catch (\Throwable $th) {
             throw $th;
