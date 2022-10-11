@@ -308,7 +308,7 @@
           // this allows us to make peer list an optional argument
           peers = hmsStore.getState(selectPeers);
         }
-      
+        console.log(peers);
         peers.forEach((peer) => {
           if (peer.videoTrack) {
             const video = h("video", {
@@ -338,7 +338,6 @@
             );
       
             peersContainer.append(peerContainer);
-            console.log('peer is' .peer);
           }
         });
       }
