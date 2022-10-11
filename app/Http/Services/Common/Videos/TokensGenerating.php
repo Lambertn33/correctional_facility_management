@@ -35,7 +35,7 @@
             $type      = "app";
             $role      = $isInmate ? "prisoner" : "visitor";
             $roomId    = $room;
-            $userId    = "123";
+            $userId    = rand(1,999999999999999);
             $issuedAt   = new DateTimeImmutable();
             $expire     = $issuedAt->modify('+24 hours')->getTimestamp();
 
