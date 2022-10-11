@@ -338,6 +338,7 @@
             );
       
             peersContainer.append(peerContainer);
+            console.log('peer is' .peer);
           }
         });
       }
