@@ -10,6 +10,7 @@
     
     public function generateToken($isManagementToken, $isInmate, $room=null) {
         $token = "";
+        $randomNumber = rand(1,9999999999);
 
         if ($isManagementToken) {
             $app_access_key = env('100MS_APP_ACCESS_KEY');
@@ -35,7 +36,7 @@
             $type      = "app";
             $role      = $isInmate ? "prisoner" : "visitor";
             $roomId    = $room;
-            $userId    = rand(1,999999999999999);
+            $userId    = (string) $randomNumber;
             $issuedAt   = new DateTimeImmutable();
             $expire     = $issuedAt->modify('+24 hours')->getTimestamp();
 
