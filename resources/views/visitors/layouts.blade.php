@@ -60,7 +60,7 @@
 									<img src="/assets/images/logo-e-huza.png" width="240">
 								</div>
 								<br>
-								<p style="font-size: 2.25rem;text-align:center;">Establishing relationships with inmate's family, friends, and various service providers. <br>
+								<p style="font-size: 1.875rem;text-align:center;">Establishing relationships with inmate's family, friends, and various service providers. <br>
 									
 								</p>
 								@if (\Request::route()->getName() === 'getHomePage')
