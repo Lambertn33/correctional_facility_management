@@ -228,10 +228,6 @@
         selectIsLocalVideoEnabled,
         selectPeers
       } from "https://cdn.skypack.dev/@100mslive/hms-video-store";
-
-      window.onbeforeunload = function() {
-        return "Dude, are you sure you want to leave? Think of the kittens!";
-    }
       
       // Initialize HMS Store
       const hmsManager = new HMSReactiveStore();
@@ -308,7 +304,6 @@
           // this allows us to make peer list an optional argument
           peers = hmsStore.getState(selectPeers);
         }
-      
         peers.forEach((peer) => {
           if (peer.videoTrack) {
             const video = h("video", {
