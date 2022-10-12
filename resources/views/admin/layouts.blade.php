@@ -56,6 +56,22 @@
 	input:read-only {
 		background-color: #d9d9d9;
 	}
+	.form-control.warning {
+		color:  #ff8c1a !important;
+		font-weight: 700
+	}
+	.form-control.success {
+		color:  #1f7a1f !important;
+		font-weight: 700
+	}
+	.form-control.danger {
+		color:  #ff0000 !important;
+		font-weight: 700
+	}
+
+	.btn-success.btn-disabled {
+		pointer-events: none;
+	}
 </style>
 
 <body>
