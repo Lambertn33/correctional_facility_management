@@ -119,18 +119,24 @@ class VisitorsController extends Controller
                 'updated_at' => now()
             ];
             $payment = (new RequestPayment)->requestPayment($data['telephone'], $tariff->amount);
-            $newPaymentObject = [
-                'id' => Str::uuid()->toString(),
-                'appointment_id' => $newAppointment['id'],
-                'transaction_id' => $payment['transactionid'],
-                'request_transaction_id' => $payment['requesttransactionid'],
-                'status' => strtoupper($payment['status']),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-            AppointmentRequested::dispatch($newAppointment, $inmateToVisit, $newPaymentObject);
-            DB::commit();
-            return back()->with('success', 'appointment made successfully... please proceed with the payment');
+            
+            if ($payment['success']) {
+                $newPaymentObject = [
+                    'id' => Str::uuid()->toString(),
+                    'appointment_id' => $newAppointment['id'],
+                    'transaction_id' => $payment['transactionid'],
+                    'request_transaction_id' => $payment['requesttransactionid'],
+                    'status' => strtoupper($payment['status']),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+                AppointmentRequested::dispatch($newAppointment, $inmateToVisit, $newPaymentObject);
+                DB::commit();
+                return back()->with('success', 'appointment made successfully... please proceed with the payment');
+            } else {
+                $errorMessage = $payment['message'];
+                return back()->withInput()->with('error', ''.$errorMessage.'');           
+            }
         } catch (\Throwable $th) {
             DB::rollback();
             return back()->withInput()->with('error','an error occured....please try again');
