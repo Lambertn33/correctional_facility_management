@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Visitors;
 
 use App\Events\AppointmentRequested;
 use App\Http\Controllers\Controller;
+use App\Http\Services\Common\Payment\RequestPayment;
 use App\Http\Services\Common\ValidateInputs;
-use App\Jobs\Visitor\AppointmentReceived;
 use App\Models\Appointment;
 use App\Models\Inmate;
 use App\Models\Prison;
@@ -118,14 +118,20 @@ class VisitorsController extends Controller
                 'created_at' => now(),
                 'updated_at' => now()
             ];
-
-            AppointmentRequested::dispatch($newAppointment, $inmateToVisit, $tariff);
-             DB::commit();
-            // // Send Confirmation SMS to The User
-            // dispatch(new AppointmentReceived($newAppointment, $inmateToVisit));
-            return back()->with('success', 'appointment made successfully... you will get a confirmation SMS');
+            $payment = (new RequestPayment)->requestPayment($data['telephone'], $tariff->amount);
+            $newPaymentObject = [
+                'id' => Str::uuid()->toString(),
+                'appointment_id' => $newAppointment['id'],
+                'transaction_id' => $payment['transactionid'],
+                'request_transaction_id' => $payment['requesttransactionid'],
+                'status' => strtoupper($payment['status']),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+            AppointmentRequested::dispatch($newAppointment, $inmateToVisit, $newPaymentObject);
+            DB::commit();
+            return back()->with('success', 'appointment made successfully... please proceed with the payment');
         } catch (\Throwable $th) {
-            throw $th;
             DB::rollback();
             return back()->withInput()->with('error','an error occured....please try again');
         }

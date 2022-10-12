@@ -3,12 +3,12 @@
 namespace App\Listeners;
 
 use App\Http\Services\Common\Payment\RequestPayment;
+use App\Jobs\Payment\MakePayment;
 use App\Jobs\Visitor\AppointmentReceived;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
 use App\Models\Appointment;
+use App\Models\Payment;
 
 class AppointmentRequestedListener
 {
@@ -33,12 +33,10 @@ class AppointmentRequestedListener
      */
     public function handle($event)
     {
-        // FIRST PAY THEN SAVE
         $appointment = $event->appointment;
         $inmate = $event->inmate;
-        $telephone = $appointment['telephone'];
-        $amount = $event->tariff->amount;
-        $payment = (new RequestPayment)->requestPayment($telephone, $amount);
+        $payment = $event->payment;
+        Payment::insert($payment);
         Appointment::insert($event->appointment);
         dispatch(new AppointmentReceived($appointment, $inmate));
     }

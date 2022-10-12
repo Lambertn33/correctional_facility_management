@@ -10,18 +10,17 @@ class Payment extends Model
 {
     use HasFactory;
 
-    const STATUS = ['PENDING', 'FAILED', 'SUCCEEDED'];
+    const STATUS = ['PENDING', 'FAILED', 'SUCCESSFUL'];
     const PENDING = self::STATUS[0];
     const FAILED = self::STATUS[1];
-    const SUCCEEDED = self::STATUS[2];
+    const SUCCESSFUL = self::STATUS[2];
     protected $fillable = [
-        'id', 'appointment_id', 'tariff_id', 'status', 'transaction_id'
+        'id', 'appointment_id', 'status', 'transaction_id','request_transaction_id'
     ];
 
     protected $casts = [
         'id' => 'string',
         'appointment_id' => 'string',
-        'tariff_id' => 'string'
     ];
 
     /**

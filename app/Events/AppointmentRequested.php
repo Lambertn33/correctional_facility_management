@@ -16,18 +16,18 @@ class AppointmentRequested
 
     public $appointment;
     public $inmate;
-    public $tariff;
+    public $payment;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($appointment, $inmate, $tariff)
+    public function __construct($appointment, $inmate, $payment)
     {
         $this->appointment = $appointment;
         $this->inmate = $inmate;
-        $this->tariff = $tariff;
+        $this->payment = $payment;
     }
 
     /**
