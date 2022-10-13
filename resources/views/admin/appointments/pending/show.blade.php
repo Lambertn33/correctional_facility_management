@@ -87,7 +87,7 @@
                                             <input type="date" class="form-control" disabled value="{{date('Y-m-d', strtotime($pendingAppointment->created_at))}}" />
                                         </div>
                                     </div>
-                                    @if (strtoupper($pendingAppointment->payment->status) == \App\Models\Payment::SUCCESSFUL)
+                                    @if (strtoupper($pendingAppointment->payment->status) == \App\Models\Payment::SUCCESSFULL)
                                         <div class="row">
                                             <div class="col-sm-3"></div>
                                             <div class="col-sm-9 text-secondary">

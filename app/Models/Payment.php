@@ -10,10 +10,10 @@ class Payment extends Model
 {
     use HasFactory;
 
-    const STATUS = ['PENDING', 'FAILED', 'SUCCESSFUL'];
+    const STATUS = ['PENDING', 'FAILED', 'SUCCESSFULL'];
     const PENDING = self::STATUS[0];
     const FAILED = self::STATUS[1];
-    const SUCCESSFUL = self::STATUS[2];
+    const SUCCESSFULL = self::STATUS[2];
     protected $fillable = [
         'id', 'appointment_id', 'status', 'transaction_id','request_transaction_id'
     ];
@@ -40,6 +40,6 @@ class Payment extends Model
      */
     public function appointment(): BelongsTo
     {
-        return $this->belongsTo(Appointment::class, 'tariff_id', 'id');
+        return $this->belongsTo(Appointment::class, 'appointment_id', 'id');
     }
 }

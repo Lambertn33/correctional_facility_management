@@ -31,7 +31,15 @@
 
 
     public function getPaymentStatus($requestTransactionId, $transactionId) {
-        return $requestTransactionId;
+        $data = [
+            'username' => env('MOMO_USERNAME'),
+            'password' => $this->generatePaymentPassword(),
+            'timestamp' => $this->timestamp,
+            'transactionid' => $transactionId,
+            'requesttransactionid' => $requestTransactionId,
+        ];
+        $paymentStatusRequest =  Http::acceptJson()->post(''.env('MOMO_APP_URL').'/gettransactionstatus'.'/', $data); 
+        return json_decode($paymentStatusRequest, TRUE); 
     }
 }
 
