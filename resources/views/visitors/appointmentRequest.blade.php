@@ -2,7 +2,7 @@
 
 <style>
     form {
-        max-height: 50vh;
+        max-height: 60vh;
         overflow: auto;
     }
     ::-webkit-scrollbar {
@@ -18,6 +18,7 @@
 
 @section('content')
 <form action="{{route('requestAppointment')}}" method="post">
+    <h4 class="text-center pb-4">Make Appointment</h4>
     @if (Session::has('error'))
         <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
             <div class="text-white"><b>{{ Session::get('error') }}</b></div>

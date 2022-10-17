@@ -58,6 +58,9 @@ class MeetingsController extends Controller
 
         $appointment = $nationalId->first();
         $meeting = $appointment->meeting;
+        if (!$meeting) {
+            return back()->withInput()->with('error','Your appointment is under review...please wait');   
+        }
         $request->session()->put('meeting_info', $meeting);
         $request->session()->put('user_type', $data['userType']);
         return redirect()->route('joinMeeting');
@@ -65,9 +68,9 @@ class MeetingsController extends Controller
 
     public function joinMeeting(Request $request)
     {
-        // if (!$request->session()->has('meeting_info')) {
-        //     return redirect()->route('provideNationalId')->with('error','please provide your National ID');
-        // }
+        if (!$request->session()->has('meeting_info')) {
+            return redirect()->route('provideNationalId')->with('error','please provide your National ID');
+        }
         $meetingInfo = $request->session()->get('meeting_info');
         $userType = $request->session()->get('user_type');
         $meetingInfo = Meeting::find($meetingInfo->id);

@@ -53,25 +53,26 @@
 			<div class="container">
 				<div class="card py-5">
 					<div class="row g-0">
-						<div class="col col-xl-5">
-							<div class="card-body p-4">
-								{{-- <h2 class="font-weight-bold" style="text-align: center"><b>Inmates Appointment Request</b></h2> --}}
-								<div style="text-align: center;">
-									<img src="/assets/images/logo-e-huza.png" width="240">
-								</div>
-								<br>
-								<p style="font-size: 1.875rem;text-align:center;">Establishing relationships with inmate's family, friends, and various service providers. <br>
-									
-								</p>
-								@if (\Request::route()->getName() === 'getHomePage')
-									<div style="text-align:center">
-										<a href="{{route('getAppointmentsPage')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Request Appointment</a><br><br>
-										<a href="{{route('provideNationalId')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Join Video</a>
+						@if (\Request::route()->getName() !== 'getAppointmentsPage')
+							<div class="col col-xl-5">
+								<div class="card-body p-4">
+									<div style="text-align: center;">
+										<img src="/assets/images/logo-e-huza.png" width="240">
 									</div>
-								@endif
+									<br>
+									<p style="font-size: 1.875rem;text-align:center;">Establishing relationships with inmate's family, friends, and various service providers. <br>
+										
+									</p>
+									@if (\Request::route()->getName() === 'getHomePage')
+										<div style="text-align:center">
+											<a href="{{route('getAppointmentsPage')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Request Appointment</a><br><br>
+											<a href="{{route('provideNationalId')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Join Video</a>
+										</div>
+									@endif
+								</div>
 							</div>
-						</div>
-						<div class="col-xl-6" style="display: flex;align-items:center;justify-content:center;">
+						@endif
+						<div class="{{\Request::route()->getName() === 'getAppointmentsPage' ? 'col-xl-6 offset-xl-3' : 'col-xl-6'}}" style="display: flex;align-items:center;justify-content:center;">
 							@yield('content')
 						</div>
 					</div>
