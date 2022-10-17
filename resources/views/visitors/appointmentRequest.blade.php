@@ -138,7 +138,7 @@
                  value="{{old('inmateNationalId')}}"
                  placeholder="Enter Inmate National ID">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="" class="form-label">Visit Date <span>*</span></label>
                 <input type="date"
                 class="form-control"
@@ -148,7 +148,18 @@
                 required
                 >
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
+                <label for="" class="form-label">Visit Time <span>*</span></label>
+                <input type="time"
+                class="form-control"
+                name="visitTime"
+                min="07:00" max="18:00" 
+                id="timeInput"
+                value="08:30"
+                required
+                >
+            </div>
+            <div class="col-md-4">
                 <label for="inputPrison" class="form-label">Select Tariff <span>*</span></label>
                 <select class="form-select" id="inputPrison" required name="tariff">
                   <option selected disabled value="">Select Tariff</option>
@@ -169,3 +180,6 @@
     </div>
 </form>
 @endsection
+<script>
+    //TODO SET MIN AND MAX TO TIME INPUT
+</script>
