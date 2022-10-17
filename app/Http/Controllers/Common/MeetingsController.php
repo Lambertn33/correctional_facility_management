@@ -19,9 +19,9 @@ class MeetingsController extends Controller
 
     public function provideNationalId(Request $request)
     {
-        if ($request->session()->has('meeting_info')) {
-            $request->session()->forget('meeting_info');
-        }
+        // if ($request->session()->has('meeting_info')) {
+        //     $request->session()->forget('meeting_info');
+        // }
         $data = $request->all();
         if (!(new ValidateInputs)->validateNationalIDLength($data['nationalId'])) {
             return back()->withInput()->with('error','The national ID Must consists of 16 digits');
