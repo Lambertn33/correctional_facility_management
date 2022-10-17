@@ -81,6 +81,22 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
+                                            <h6 class="mb-0">From</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" class="form-control" disabled value="{{date('h:i:s', strtotime($pendingAppointment->from))}}" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">To</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" class="form-control" disabled value="{{date('h:i:s', strtotime($pendingAppointment->to))}}" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
                                             <h6 class="mb-0">Requested on</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">

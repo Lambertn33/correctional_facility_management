@@ -211,7 +211,7 @@
 
   <div id="conference" class="conference-section hide">
     <h2>Meeting with {{$userType === 'INMATE' ? $meetingInfo->appointment->names : $meetingInfo->appointment->inmate->names}} (Time Remaining: <b id="time"></b>)</h2>
-
+    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
     <div id="peers-container"></div>
   </div>
 
@@ -220,6 +220,8 @@
     <button id="mute-vid" class="btn-control">Hide</button>
   </div>
 </body>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+</script>
 <script type="module">
     import {
         HMSReactiveStore,
@@ -244,7 +246,29 @@
       const muteAud = document.getElementById("mute-aud");
       const muteVid = document.getElementById("mute-vid");
       const controls = document.getElementById("controls");
-      const limitedTime = "{{$tariff->time}}"
+      const limitedTime = "{{$tariff->time}}";
+      const meetingEnd = "{{date('Y-m-d h:i:s', strtotime($meetingInfo->appointment->to))}}";
+      const meetingId = "{{$meetingInfo->id}}";
+      const token = document.getElementById("token").value;
+      let url =  "{{ route('invalidateMeeting', ":meetingId") }}";
+      url = url.replace(':meetingId', meetingId);
+      
+      function invalidateMeeting() {
+        $.ajax({
+          type:'PUT',
+          url,
+          data: {
+            "_token" : "{{csrf_token()}}"
+          },
+          success:function(data) {
+            window.location.reload();
+            window.location.href = "{{ route('provideNationalId')}}";
+          }
+        });
+      }
+
+      //TODO calculate time difference
+      
 
             // Leaving the room
       function leaveRoom() {
@@ -266,13 +290,12 @@
             // display.textContent = minutes + ":" + seconds;
             document.getElementById('time').innerHTML =  minutes + ":" + seconds;
 
-            if (timer < 16) {
+            if (timer < 15) {
               document.getElementById('time').style.color="red";
             }
 
             if (--timer < 0) {
-              // call Ajax to update 
-              window.location.reload();
+              invalidateMeeting();
             }
         }, 1000);
     }
@@ -295,7 +318,7 @@
           userName: document.getElementById("name").value,
           authToken: document.getElementById("token").value
         });
-        startTimer(limitedTime);
+        startTimer(limitedTime * 60);
       });
             
       // Cleanup if user refreshes the tab or navigates away
