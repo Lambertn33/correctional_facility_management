@@ -17,17 +17,19 @@ class AppointmentStatus implements ShouldQueue
     private $appointment;
     private $inmate;
     private $isAppointmentApproved;
+    private $code;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($appointment, $inmate, $isAppointmentApproved)
+    public function __construct($appointment, $inmate, $isAppointmentApproved, $code)
     {
         $this->appointment = $appointment;
         $this->inmate = $inmate;
         $this->isAppointmentApproved = $isAppointmentApproved;
+        $this->code = $code;
     }
 
     /**
@@ -37,13 +39,15 @@ class AppointmentStatus implements ShouldQueue
      */
     public function handle()
     {
-        //TODO GENERATE HOUR AND TOKEN
+        //TODO GENERATE HOUR
         $telephone = $this->appointment->telephone;
         $names = $this->appointment->names;
         $inmateNames = $this->inmate->names;
+        $code = $this->code;
+
         $message = $this->isAppointmentApproved
-                   ? 'Dear '.$names.' Your request to e-meet '. $inmateNames .' has been approved..'
-                   : 'Dear '.$names.' Your request to e-meet '. $inmateNames .' has been rejected... request next time';
+                   ? 'Dear '.$names.' Your request to e-meet '. $inmateNames .' has been approved.. you will use '. $code .' as your meeting code'
+                   : 'Dear '.$names.' Your request to e-meet '. $inmateNames .' has been rejected... you will be refunded your funds and please request next time';
 
         (new SendMessage)->sendMessage($telephone, $message);
     }

@@ -13,12 +13,15 @@ use App\Models\Meeting;
 use App\Models\Meeting_Token;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use App\Jobs\Admin\AppointmentStatus;
 
 class CreateRoom implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private $appointment;
+    private $inmate;
+    private $isAppointmentApproved;
 
     public $tries = 10;
 
@@ -27,9 +30,11 @@ class CreateRoom implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($appointment)
+    public function __construct($appointment, $inmate, $isAppointmentApproved)
     {
         $this->appointment = $appointment;
+        $this->inmate = $inmate;
+        $this->isAppointmentApproved = $isAppointmentApproved;
     }
 
     /**
@@ -65,6 +70,7 @@ class CreateRoom implements ShouldQueue
             Meeting::insert($newMeeting);
             Meeting_Token::insert($newMeetingTokens);
             DB::commit();
+            dispatch(new AppointmentStatus($this->appointment, $this->inmate, true, $visitorCode));
         } catch (\Throwable $th) {
             DB::rollBack();
             $this->release(20);
