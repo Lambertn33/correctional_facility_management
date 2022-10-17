@@ -210,7 +210,7 @@
   </form>
 
   <div id="conference" class="conference-section hide">
-    <h2>Meeting with {{$userType === 'INMATE' ? $meetingInfo->appointment->names : $meetingInfo->appointment->inmate->names}}</h2>
+    <h2>Meeting with {{$userType === 'INMATE' ? $meetingInfo->appointment->names : $meetingInfo->appointment->inmate->names}} (Time Remaining: <b id="time"></b>)</h2>
 
     <div id="peers-container"></div>
   </div>
@@ -244,6 +244,38 @@
       const muteAud = document.getElementById("mute-aud");
       const muteVid = document.getElementById("mute-vid");
       const controls = document.getElementById("controls");
+      const limitedTime = "{{$tariff->time}}"
+
+            // Leaving the room
+      function leaveRoom() {
+        btnStyles(false);
+        hmsActions.leave();
+        document.getElementById("token").value = "";
+      }
+
+      //counter
+      function startTimer(duration) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            // display.textContent = minutes + ":" + seconds;
+            document.getElementById('time').innerHTML =  minutes + ":" + seconds;
+
+            if (timer < 16) {
+              document.getElementById('time').style.color="red";
+            }
+
+            if (--timer < 0) {
+              // call Ajax to update 
+              window.location.reload();
+            }
+        }, 1000);
+    }
 
       // btn styles
       function btnStyles(isJoining) {
@@ -263,15 +295,10 @@
           userName: document.getElementById("name").value,
           authToken: document.getElementById("token").value
         });
+        // startTimer(limitedTime);
+        startTimer(30);
       });
-      
-      // Leaving the room
-      function leaveRoom() {
-        btnStyles(false);
-        hmsActions.leave();
-        document.getElementById("token").value = "";
-      }
-      
+            
       // Cleanup if user refreshes the tab or navigates away
       window.onunload = window.onbeforeunload = leaveRoom;
       leaveBtn.addEventListener("click", function(){

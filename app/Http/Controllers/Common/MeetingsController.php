@@ -72,6 +72,6 @@ class MeetingsController extends Controller
         $userType = $request->session()->get('user_type');
         $appointment = $meetingInfo->appointment;
         $tariff = $appointment->tariff;
-        return view('meetings.visitors.join', compact('meetingInfo','userType'));
+        return view('meetings.visitors.join', compact('meetingInfo','userType','appointment', 'tariff'));
     }
 }
