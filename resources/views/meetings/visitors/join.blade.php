@@ -295,8 +295,7 @@
           userName: document.getElementById("name").value,
           authToken: document.getElementById("token").value
         });
-        // startTimer(limitedTime);
-        startTimer(30);
+        startTimer(limitedTime);
       });
             
       // Cleanup if user refreshes the tab or navigates away
