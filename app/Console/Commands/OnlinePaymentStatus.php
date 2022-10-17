@@ -46,7 +46,7 @@ class OnlinePaymentStatus extends Command
                         $telephone = $appointment->telephone;
                          // if user has paid, send success message and change payment status
                         if ((strtoupper($onlineStatusResponse['status']) == Payment::SUCCESSFULL)) {
-                            $message = 'Dear '.$names.' Your payment has been received successully... you will receive a message containing the visiting hour';
+                            $message = 'Dear '.$names.' Your payment has been received successully... you will be informed the next steps very soon....';
                             (new SendMessage)->sendMessage($telephone, $message);
                             $pendingPayment->update([
                                 'status' => strtoupper($onlineStatusResponse['status'])

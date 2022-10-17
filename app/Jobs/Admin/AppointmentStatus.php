@@ -37,11 +37,12 @@ class AppointmentStatus implements ShouldQueue
      */
     public function handle()
     {
+        //TODO GENERATE HOUR AND TOKEN
         $telephone = $this->appointment->telephone;
         $names = $this->appointment->names;
         $inmateNames = $this->inmate->names;
         $message = $this->isAppointmentApproved
-                   ? 'Dear '.$names.' Your request to e-meet '. $inmateNames .' has been approved.. please proceed the payment'
+                   ? 'Dear '.$names.' Your request to e-meet '. $inmateNames .' has been approved..'
                    : 'Dear '.$names.' Your request to e-meet '. $inmateNames .' has been rejected... request next time';
 
         (new SendMessage)->sendMessage($telephone, $message);

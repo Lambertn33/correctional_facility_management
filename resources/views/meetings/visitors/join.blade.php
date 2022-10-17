@@ -201,7 +201,7 @@
       <input id="name" type="text" disabled name="username" value="{{$userType === 'INMATE' ? $meetingInfo->appointment->inmate->names : $meetingInfo->appointment->names}}" />
     </div>
     <div class="input-container">
-      <input id="token" type="hidden" name="token" value="{{$userType === 'INMATE' ? $meetingInfo->inmate_token : $meetingInfo->visitor_token}}" />
+      <input id="token" type="hidden" name="token" value="{{$userType === 'INMATE' ? $meetingInfo->meetingCodes->inmate_token : $meetingInfo->meetingCodes->visitor_token}}" />
     </div>
     <button type="button" class="btn-primary" id="join-btn">
       Join

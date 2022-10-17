@@ -39,7 +39,7 @@ class PrisonsSeeder extends Seeder
             ),
             2 => array(
                 'id' => 'c7a610c1-2f17-4b5f-b3a8-07e3782fbe78',
-                'name' => '1930 PRISON',
+                'name' => 'MUHANGA PRISON',
                 'province' => 'KIGALI',
                 'district' => 'GASABO',
                 'code' => 'Code 3',
