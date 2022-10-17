@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Meeting extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'id', 'appointment_id', 'room_id', 'meeting_ended', 'visitor_token', 'inmate_token'
+        'id', 'appointment_id', 'room_id', 'meeting_ended'
     ];
 
     protected $casts = [
@@ -27,5 +28,10 @@ class Meeting extends Model
     public function appointment(): BelongsTo
     {
         return $this->belongsTo(Appointment::class, 'appointment_id', 'id');
+    }
+
+    public function meetingCodes()
+    {
+        return $this->hasOne(Meeting_Token::class,'meeting_id', 'id');
     }
 }

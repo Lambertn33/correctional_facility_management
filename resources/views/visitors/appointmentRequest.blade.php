@@ -5,6 +5,16 @@
         max-height: 60vh;
         overflow: auto;
     }
+    form label {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+    form label span {
+        color: red;
+        font-weight: 500;
+        font-size: 1rem;
+    }
     ::-webkit-scrollbar {
         width: 0.4375rem;
         border: 0.0625rem solid transparent;
@@ -34,7 +44,7 @@
     <div class="border border-3 p-4 rounded">
         <div class="row g-3">
             <div class="col-md-6">
-              <label for="inputNames" class="form-label">Names</label>
+              <label for="inputNames" class="form-label">Names <span>*</span></label>
               <input
               type="text" 
               class="form-control" 
@@ -46,7 +56,7 @@
             </div>
 
             <div class="col-md-6">
-              <label for="inputTelephone" class="form-label">Telephone(format 250...)</label>
+              <label for="inputTelephone" class="form-label">Telephone(format 250...) <span>*</span></label>
               <input 
               type="tel" 
               class="form-control" 
@@ -60,7 +70,7 @@
             </div>
 
             <div class="col-md-6">
-                <label for="inputNationalId" class="form-label">Your National ID</label>
+                <label for="inputNationalId" class="form-label">Your National ID <span>*</span></label>
                 <input 
                 type="number"
                 maxlength="16"
@@ -75,7 +85,7 @@
               </div>
 
               <div class="col-md-6">
-                <label for="inputNames" class="form-label">Inmate Names</label>
+                <label for="inputNames" class="form-label">Inmate Names <span>*</span></label>
                 <input
                 type="text" 
                 class="form-control" 
@@ -108,7 +118,7 @@
             </div>
 
             <div class="col-md-6">
-                <label for="inputPrison" class="form-label">Select Prison</label>
+                <label for="inputPrison" class="form-label">Select Prison <span>*</span></label>
                 <select class="form-select" id="inputPrison" required name="prison">
                   <option selected disabled value="">Select Prison</option>
                   @foreach ($allPrisons as $item)
@@ -128,8 +138,8 @@
                  value="{{old('inmateNationalId')}}"
                  placeholder="Enter Inmate National ID">
             </div>
-            <div class="col-md-6">
-                <label for="" class="form-label">Visit Date</label>
+            <div class="col-md-4">
+                <label for="" class="form-label">Visit Date <span>*</span></label>
                 <input type="date"
                 class="form-control"
                 name="visitDate"
@@ -138,8 +148,19 @@
                 required
                 >
             </div>
-            <div class="col-md-6">
-                <label for="inputPrison" class="form-label">Select Tariff</label>
+            <div class="col-md-4">
+                <label for="" class="form-label">Visit Time <span>*</span></label>
+                <input type="time"
+                class="form-control"
+                name="visitTime"
+                min="07:00" max="18:00" 
+                id="timeInput"
+                value="08:30"
+                required
+                >
+            </div>
+            <div class="col-md-4">
+                <label for="inputPrison" class="form-label">Select Tariff <span>*</span></label>
                 <select class="form-select" id="inputPrison" required name="tariff">
                   <option selected disabled value="">Select Tariff</option>
                   @foreach ($allTariffs as $item)
@@ -159,3 +180,6 @@
     </div>
 </form>
 @endsection
+<script>
+    //TODO SET MIN AND MAX TO TIME INPUT
+</script>

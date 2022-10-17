@@ -21,7 +21,7 @@ class InmatesSeeder extends Seeder
         DB::table('inmates')->insert(array(
             0 =>array(
                 'id' => Str::uuid()->toString(),
-                'names' => 'Inmate 1',
+                'names' => 'Eric',
                 'prison_id' => 'a406ad0c-2b49-4d1c-a1eb-b1ad2bc298a2',
                 'national_id' => 1111111111111116,
                 'father_names' => 'Male Parent 1',
@@ -35,7 +35,7 @@ class InmatesSeeder extends Seeder
             ),
             1 =>array(
                 'id' => Str::uuid()->toString(),
-                'names' => 'Inmate 2',
+                'names' => 'John',
                 'prison_id' => 'a406ad0c-2b49-4d1c-a1eb-b1ad2bc298a2',
                 'national_id' => 1111111111111115,
                 'father_names' => 'Male Parent 2',
@@ -49,7 +49,7 @@ class InmatesSeeder extends Seeder
             ),
             2 =>array(
                 'id' => Str::uuid()->toString(),
-                'names' => 'Inmate 3',
+                'names' => 'Mary',
                 'prison_id' => '6e8bb547-96a5-406b-a947-96bb0760745e',
                 'national_id' => 1111111111111114,
                 'father_names' => 'Male Parent 3',
@@ -63,7 +63,7 @@ class InmatesSeeder extends Seeder
             ),
             3 =>array(
                 'id' => Str::uuid()->toString(),
-                'names' => 'Inmate 4',
+                'names' => 'Lambert',
                 'prison_id' => '6e8bb547-96a5-406b-a947-96bb0760745e',
                 'national_id' => 1111111111111113,
                 'father_names' => 'Male Parent 4',
@@ -77,7 +77,7 @@ class InmatesSeeder extends Seeder
             ),
             4 =>array(
                 'id' => Str::uuid()->toString(),
-                'names' => 'Inmate 5',
+                'names' => 'Octave',
                 'prison_id' => 'c7a610c1-2f17-4b5f-b3a8-07e3782fbe78',
                 'national_id' => 1111111111111112,
                 'father_names' => 'Male Parent 5',
@@ -91,7 +91,7 @@ class InmatesSeeder extends Seeder
             ),
             5 =>array(
                 'id' => Str::uuid()->toString(),
-                'names' => 'Inmate 6',
+                'names' => 'Heritier',
                 'prison_id' => 'c7a610c1-2f17-4b5f-b3a8-07e3782fbe78',
                 'national_id' => 1111111111111111,
                 'father_names' => 'Male Parent 6',

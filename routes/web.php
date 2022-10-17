@@ -33,6 +33,7 @@ Route::controller(MeetingsController::class)->prefix('meetings')->group(function
     Route::get('/', 'getMeetingPage')->name('getMeetingPage');
     Route::post('/', 'provideNationalId')->name('provideNationalId');
     Route::get('/join','joinMeeting')->name('joinMeeting');
+    Route::put('/{id}/invalidate', 'invalidateMeeting')->name('invalidateMeeting');
 });
 
 //Appointments Requests Routes

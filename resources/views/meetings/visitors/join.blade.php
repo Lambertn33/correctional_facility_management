@@ -201,7 +201,7 @@
       <input id="name" type="text" disabled name="username" value="{{$userType === 'INMATE' ? $meetingInfo->appointment->inmate->names : $meetingInfo->appointment->names}}" />
     </div>
     <div class="input-container">
-      <input id="token" type="hidden" name="token" value="{{$userType === 'INMATE' ? $meetingInfo->inmate_token : $meetingInfo->visitor_token}}" />
+      <input id="token" type="hidden" name="token" value="{{$userType === 'INMATE' ? $meetingInfo->meetingCodes->inmate_token : $meetingInfo->meetingCodes->visitor_token}}" />
     </div>
     <button type="button" class="btn-primary" id="join-btn">
       Join
@@ -210,8 +210,8 @@
   </form>
 
   <div id="conference" class="conference-section hide">
-    <h2>Meeting with {{$userType === 'INMATE' ? $meetingInfo->appointment->names : $meetingInfo->appointment->inmate->names}}</h2>
-
+    <h2>Meeting with {{$userType === 'INMATE' ? $meetingInfo->appointment->names : $meetingInfo->appointment->inmate->names}} (Time Remaining: <b id="time"></b>)</h2>
+    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
     <div id="peers-container"></div>
   </div>
 
@@ -220,6 +220,8 @@
     <button id="mute-vid" class="btn-control">Hide</button>
   </div>
 </body>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+</script>
 <script type="module">
     import {
         HMSReactiveStore,
@@ -244,6 +246,59 @@
       const muteAud = document.getElementById("mute-aud");
       const muteVid = document.getElementById("mute-vid");
       const controls = document.getElementById("controls");
+      const limitedTime = "{{$tariff->time}}";
+      const meetingEnd = "{{date('Y-m-d h:i:s', strtotime($meetingInfo->appointment->to))}}";
+      const meetingId = "{{$meetingInfo->id}}";
+      const token = document.getElementById("token").value;
+      let url =  "{{ route('invalidateMeeting', ":meetingId") }}";
+      url = url.replace(':meetingId', meetingId);
+      
+      function invalidateMeeting() {
+        $.ajax({
+          type:'PUT',
+          url,
+          data: {
+            "_token" : "{{csrf_token()}}"
+          },
+          success:function(data) {
+            window.location.reload();
+            window.location.href = "{{ route('provideNationalId')}}";
+          }
+        });
+      }
+
+      //TODO calculate time difference
+      
+
+            // Leaving the room
+      function leaveRoom() {
+        btnStyles(false);
+        hmsActions.leave();
+        document.getElementById("token").value = "";
+      }
+
+      //counter
+      function startTimer(duration) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            // display.textContent = minutes + ":" + seconds;
+            document.getElementById('time').innerHTML =  minutes + ":" + seconds;
+
+            if (timer < 15) {
+              document.getElementById('time').style.color="red";
+            }
+
+            if (--timer < 0) {
+              invalidateMeeting();
+            }
+        }, 1000);
+    }
 
       // btn styles
       function btnStyles(isJoining) {
@@ -263,15 +318,9 @@
           userName: document.getElementById("name").value,
           authToken: document.getElementById("token").value
         });
+        startTimer(limitedTime * 60);
       });
-      
-      // Leaving the room
-      function leaveRoom() {
-        btnStyles(false);
-        hmsActions.leave();
-        document.getElementById("token").value = "";
-      }
-      
+            
       // Cleanup if user refreshes the tab or navigates away
       window.onunload = window.onbeforeunload = leaveRoom;
       leaveBtn.addEventListener("click", function(){

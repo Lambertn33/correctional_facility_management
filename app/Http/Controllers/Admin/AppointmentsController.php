@@ -50,15 +50,11 @@ class AppointmentsController extends Controller
                 'status' => Appointment::APPROVED
             ]);
             DB::commit();
-            // Create 100MS room
-            dispatch(new CreateRoom($pendingAppointment));
-            // Send SMS To User Notifying And Payment
-            dispatch(new AppointmentStatus($pendingAppointment, $pendingAppointment->inmate, true));
-            //---///
+            // Create 100MS room and notify user about approval
+            dispatch(new CreateRoom($pendingAppointment, $pendingAppointment->inmate, true));
             return redirect()->route('getPendingAppointments')->with('success', 'appointment approved successfully');
         } catch (\Throwable $th) {
             DB::rollBack();
-            throw $th;
             return back()->with('error', 'an error occured...please try again');
         }
     }
@@ -73,7 +69,7 @@ class AppointmentsController extends Controller
             ]);
             // Send SMS To User Notifying
             DB::commit();
-            dispatch(new AppointmentStatus($pendingAppointment, $pendingAppointment->inmate, false));
+            dispatch(new AppointmentStatus($pendingAppointment, $pendingAppointment->inmate, false, null));
             return redirect()->route('getPendingAppointments')->with('success', 'appointment rejected successfully');
         } catch (\Throwable $th) {
             DB::rollBack();

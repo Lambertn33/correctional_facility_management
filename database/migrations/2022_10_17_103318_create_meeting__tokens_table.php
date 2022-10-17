@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('meetings', function (Blueprint $table) {
+        Schema::create('meeting__tokens', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('appointment_id');
-            $table->string('room_id');
-            $table->boolean('meeting_ended')->default(false);
+            $table->uuid('meeting_id');
+            $table->longText('visitor_token')->nullable();
+            $table->longText('inmate_token')->nullable();
+            $table->string('visitor_code')->nullable();
+            $table->string('inmate_code')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meetings');
+        Schema::dropIfExists('meeting__tokens');
     }
 };

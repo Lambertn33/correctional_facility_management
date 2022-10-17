@@ -13,17 +13,14 @@
     <div class="border border-3 p-4 rounded">
         <div class="row g-3">
             <div class="col-md-12">
-              <label for="inputNationalID" class="form-label">National ID</label>
+              <label for="inputNationalID" class="form-label">Meeting Code</label>
               <input 
               type="number"
-              maxlength="16"
-              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)"
-              minlength="16" 
               class="form-control" 
               required id="inputNationalId" 
-              placeholder="Enter your national ID" 
-              name="nationalId"
-              value="{{old('nationalId')}}"
+              placeholder="Enter your Code" 
+              name="code"
+              value="{{old('code')}}"
               >
             </div>
             <div class="col-md-12">

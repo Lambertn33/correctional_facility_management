@@ -11,6 +11,7 @@ use App\Models\Inmate;
 use App\Models\Prison;
 use App\Models\Tariff;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
@@ -33,6 +34,12 @@ class VisitorsController extends Controller
         $phoneFormat = 2507;
         $phoneTotalDigits = 12;
         $data = $request->all();
+        $visitTime = strtotime($data['visitTime']);
+        $from = date('H:i:s', $visitTime);
+        $tariff = Tariff::find($data['tariff']);
+        $timeToAdd = $tariff->time;
+        $to = date('H:i:s', strtotime($from. ' +'.$timeToAdd. 'minutes'));
+
         if (!(new ValidateInputs)->validatePhoneNumber($data['telephone'], $phoneFormat, $phoneTotalDigits)) {
             return back()->withInput()->with('error','The Telephone number must start with '. $phoneFormat .'... and consists of '.$phoneTotalDigits.' digits');
         }
@@ -84,7 +91,6 @@ class VisitorsController extends Controller
             $inmateToVisit = $query->first();
             $inmateToVisitPrison = $inmateToVisit->prison_id;
             $inmateToVisitId = $inmateToVisit->id;
-            $tariff = Tariff::find($data['tariff']);
 
             // Check if Inmate exists and has no appointment on the selected date
             $checkInmateAppointment = Appointment::where('inmate_id', $inmateToVisitId)
@@ -115,6 +121,8 @@ class VisitorsController extends Controller
                 'prison_id' => $inmateToVisitPrison, 
                 'tariff_id' => $data['tariff'],
                 'date' => $data['visitDate'],
+                'from' => $data['visitDate'].' '. $from,
+                'to' => $data['visitDate'].' ' .$to,
                 'created_at' => now(),
                 'updated_at' => now()
             ];
