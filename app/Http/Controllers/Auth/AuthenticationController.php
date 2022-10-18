@@ -25,6 +25,7 @@ class AuthenticationController extends Controller
                 return redirect()->route('getSuperAdminDashboardOverview');
             } else {
                 if (!$authenticatedUser->admin->has_changed_password || $authenticatedUser->admin->password_expiration_days == 0) {
+                    //TODO update Password
                     return 'need to update password';
                 } else {
                     return redirect()->route('getAdminDashboardOverview');

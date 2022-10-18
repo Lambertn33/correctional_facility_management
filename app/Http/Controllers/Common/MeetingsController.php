@@ -72,7 +72,7 @@ class MeetingsController extends Controller
                 if ($meeting->meeting_ended) {
                     return back()->withInput()->with('error', 'this meeting has been ended on '.$meeting->appointment->date.' at ' .date('h:i:s', strtotime($meeting->appointment->from)) . ' ');
                 }
-                $now = now()->format('Y-m-d h:i:s');
+                $now = now()->format('Y-m-d H:i:s');
                 $meetingStart = $meeting->appointment->from;
                 $meetingDifferenceFromNowInMinutes =  ceil(round(abs(strtotime($meetingStart) - strtotime($now)) /60, 2));
                 if ($meetingDifferenceFromNowInMinutes > 2) {
