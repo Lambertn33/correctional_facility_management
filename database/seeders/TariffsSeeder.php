@@ -21,21 +21,21 @@ class TariffsSeeder extends Seeder
         DB::table('tariffs')->insert(array(
             0 => array(
                 'id' => Str::uuid()->toString(),
-                'time' => 10,
+                'time' => 5,
                 'amount' => 100,
                 'created_at' => now(),
                 'updated_at' => now()
             ),
             1 => array(
                 'id' => Str::uuid()->toString(),
-                'time' => 15,
+                'time' => 7,
                 'amount' => 150,
                 'created_at' => now(),
                 'updated_at' => now()
             ),
             2 => array(
                 'id' => Str::uuid()->toString(),
-                'time' => 20,
+                'time' => 10,
                 'amount' => 200,
                 'created_at' => now(),
                 'updated_at' => now()
