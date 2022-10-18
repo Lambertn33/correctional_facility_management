@@ -11,7 +11,6 @@ use App\Models\Inmate;
 use App\Models\Prison;
 use App\Models\Tariff;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 

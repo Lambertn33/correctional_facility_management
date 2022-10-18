@@ -2,8 +2,6 @@
 
 namespace App\Listeners;
 
-use App\Http\Services\Common\Payment\RequestPayment;
-use App\Jobs\Payment\MakePayment;
 use App\Jobs\Visitor\AppointmentReceived;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;

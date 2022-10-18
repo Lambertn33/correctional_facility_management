@@ -1,7 +1,6 @@
 <?php 
  namespace App\Http\Services\Common\Videos;
  use Firebase\JWT\JWT;
- use Illuminate\Support\Str;
  use DateTimeImmutable;
  use Ramsey\Uuid\Uuid;
  require __DIR__ . '../../../../../../vendor/autoload.php';
