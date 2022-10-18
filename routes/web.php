@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\Common\MeetingsController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashboardController;
 use App\Http\Controllers\Visitors\VisitorsController;
+use App\Http\Controllers\Admin\MeetingsController as AdminMeetingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,8 @@ Route::controller(SuperAdminDashboardController::class)->prefix('super-admin')->
         Route::get('/', 'getSuperAdminDashboardOverview')->name('getSuperAdminDashboardOverview');
     });
 });
+
+//Admin Routes
 
 Route::prefix('admin')->group(function() {
     //Dashboard
@@ -100,5 +103,10 @@ Route::prefix('admin')->group(function() {
                 Route::put('/', 'updatePrisonInmate')->name('updatePrisonInmate');
             });
         });
+    });
+
+    //Meetings
+    Route::controller(AdminMeetingsController::class)->prefix('meetings')->group(function() {
+        Route::get('/', 'getAllMeetings')->name('getAllMeetings');
     });
 });
