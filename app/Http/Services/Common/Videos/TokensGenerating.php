@@ -7,7 +7,7 @@
 
  class TokensGenerating {
     
-    public function generateToken($isManagementToken, $isInmate, $room=null) {
+    public function generateToken($isManagementToken, $isInmate, $room=null, $isAdministrator) {
         $token = "";
         $randomNumber = rand(1,9999999999);
 
@@ -33,7 +33,7 @@
             $app_secret = env('100MS_APP_SECRET');
             $version   = 2;
             $type      = "app";
-            $role      = $isInmate ? "prisoner" : "visitor";
+            $role      = $isAdministrator ? "administrator" : ($isInmate ? "prisoner" : "visitor");
             $roomId    = $room;
             $userId    = (string) $randomNumber;
             $issuedAt   = new DateTimeImmutable();

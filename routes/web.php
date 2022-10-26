@@ -108,5 +108,6 @@ Route::prefix('admin')->group(function() {
     //Meetings
     Route::controller(AdminMeetingsController::class)->prefix('meetings')->group(function() {
         Route::get('/', 'getAllMeetings')->name('getAllMeetings');
+        Route::get('/{meeting}', 'getSpecificMeeting')->name('getSpecificMeeting');
     });
 });

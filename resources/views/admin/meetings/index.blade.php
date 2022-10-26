@@ -30,9 +30,7 @@
                         <tr>
                             <th>#</th>
                             <th>Inmate Names</th>
-                            <th>Inmate Code</th>
                             <th>Visitor Names</th>
-                            <th>Visitor Code</th>
                             <th>From</th>
                             <th>To</th>
                             <th>Action</th>
@@ -54,7 +52,6 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>{{$item->meetingCodes->inmate_code}}</td>
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="recent-product-img">
@@ -65,11 +62,14 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>{{$item->meetingCodes->visitor_code}}</td>
                                 <td>{{$item->appointment->from}}</td>
                                 <td>{{$item->appointment->to}}</td>
                                 <td>
-                                    <a href="#" class="btn btn-primary btn-sm">Join</a>
+                                    @if (!$item->meeting_ended)
+                                        <a href="{{route('getSpecificMeeting', $item->id)}}" class="text-danger fw-bold">View More</a>
+                                    @else
+                                        <b class="text-danger">Meeting Ended</b>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

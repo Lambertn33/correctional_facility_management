@@ -23,4 +23,14 @@ class MeetingsController extends Controller
         })->get();
         return view('admin.meetings.index', compact('currentPrison','allMeetings','authenticatedUser'));
     }
+
+    public function getSpecificMeeting($id)
+    {
+        $authenticatedUser = Auth::user();
+        $authenticatedAdmin = $authenticatedUser->admin;
+        $currentPrison = $authenticatedAdmin->prison;
+
+        $currentMeeting = Meeting::with('meetingCodes')->with('appointment')->find($id);
+        return view('admin.meetings.show', compact('currentPrison','currentMeeting','authenticatedUser'));
+    }
 }
