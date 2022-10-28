@@ -38,6 +38,7 @@ class AppointmentsController extends Controller
         $authenticatedAdmin = $authenticatedUser->admin;
         $currentPrison = $authenticatedAdmin->prison;
         $pendingAppointment = Appointment::with('inmate')->with('tariff')->find($id);
+
         return view('admin.appointments.pending.show', compact('currentPrison','pendingAppointment','authenticatedUser'));
     }
 

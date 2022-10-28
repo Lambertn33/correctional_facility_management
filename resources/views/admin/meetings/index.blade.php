@@ -29,7 +29,7 @@
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
-                            <th>{{__('Inmate Names')}}s</th>
+                            <th>{{__('Inmate Names')}}</th>
                             <th>{{__('Visitor Names')}}</th>
                             <th>{{__('From')}}</th>
                             <th>{{__('To')}}</th>

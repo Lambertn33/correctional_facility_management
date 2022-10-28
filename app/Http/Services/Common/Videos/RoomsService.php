@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
  class RoomsService {
     
     public function createMeetingRoom($pendingAppointment) {
-        $managementToken = (new TokensGenerating)->generateToken(true, false);
+        $managementToken = (new TokensGenerating)->generateToken(true, false, '', false);
         return Http::withHeaders([
             'Authorization' => 'Bearer '.$managementToken.'',
         ])->acceptJson()

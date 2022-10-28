@@ -23,8 +23,6 @@ class CreateRoom implements ShouldQueue
     private $inmate;
     private $isAppointmentApproved;
 
-    public $tries = 10;
-
     /**
      * Create a new job instance.
      *
@@ -73,8 +71,6 @@ class CreateRoom implements ShouldQueue
             dispatch(new AppointmentStatus($this->appointment, $this->inmate, true, $visitorCode));
         } catch (\Throwable $th) {
             DB::rollBack();
-            $this->release(20);
-            return;
         }
     }
 }

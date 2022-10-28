@@ -36,7 +36,7 @@
                                 <th>{{__('Inmate Code')}}</th>
                                 <th>{{__('Inmate National ID')}}</th>
                                 <th>{{__('Inmate Status')}}</th>
-                                <th>Action</th>
+                                <th>{{__('Action')}}</th>
                             </tr>
                         </thead>
                         <tbody>

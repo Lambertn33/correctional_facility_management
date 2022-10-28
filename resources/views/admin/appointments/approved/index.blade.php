@@ -34,7 +34,7 @@
                                 <th>{{__('Inmate Code')}}</th>
                                 <th>{{__('Visit Date')}}</th>
                                 <th>{{__('Payment Status')}}</th>
-                                <th>Action</th>
+                                <th>{{__('Action')}}</th>
                             </tr>
                         </thead>
                         <tbody>
