@@ -5,7 +5,7 @@
 <div class="page-wrapper">
     <div class="page-content">
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Meetings</div>
+            <div class="breadcrumb-title pe-3">{{__('Meetings')}}</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -20,7 +20,7 @@
         <div class="card-body">
             @if (Session::has('success'))
                 <div class="alert alert-success border-0 bg-success alert-dismissible fade show">
-                    <div class="text-white">{{Session::get('success')}}</div>
+                    <div class="text-white">{{__(Session::get('success'))}}</div>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
@@ -29,11 +29,11 @@
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
-                            <th>Inmate Names</th>
-                            <th>Visitor Names</th>
-                            <th>From</th>
-                            <th>To</th>
-                            <th>Action</th>
+                            <th>{{__('Inmate Names')}}s</th>
+                            <th>{{__('Visitor Names')}}</th>
+                            <th>{{__('From')}}</th>
+                            <th>{{__('To')}}</th>
+                            <th>{{__('Action')}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,9 +66,9 @@
                                 <td>{{$item->appointment->to}}</td>
                                 <td>
                                     @if (!$item->meeting_ended)
-                                        <a href="{{route('getSpecificMeeting', $item->id)}}" class="text-danger fw-bold">View More</a>
+                                        <a href="{{route('getSpecificMeeting', $item->id)}}" class="text-danger fw-bold">{{__('View More')}}</a>
                                     @else
-                                        <b class="text-danger">Meeting Ended</b>
+                                        <b class="text-danger">{{__('Meeting Ended')}}</b>
                                     @endif
                                 </td>
                             </tr>

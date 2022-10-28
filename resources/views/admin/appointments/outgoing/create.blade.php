@@ -39,12 +39,23 @@
     
                             <div class="col-md-6">
                                 <label for="inputFirstName" class="form-label">{{__('Inmate Code')}}</label>
-                                <input type="text" name="code" placeholder="Enter inmate Code"  value="{{old('code')}}" required class="form-control" id="inputFirstName">
+                                <input type="text"
+                                 name="code"
+                                value="{{old('code')}}"
+                                required
+                                class="form-control"
+                                id="inputFirstName">
                             </div>
+
                             <div class="col-md-6">
                                 <label for="inputFirstName" class="form-label">{{__('Visitor Names')}}</label>
-                                <input type="text" name="names" placeholder="Enter Visitor Names"  value="{{old('names')}}" required class="form-control" id="inputFirstName">
+                                <input type="text"
+                                name="names"
+                                value="{{old('names')}}"
+                                required class="form-control"
+                                id="inputFirstName">
                             </div>
+
                             <div class="col-md-6">
                                 <label for="inputLastName" class="form-label">{{__('Telephone')}}</label>
                                 <input 
@@ -54,10 +65,10 @@
                                 minlength="12" 
                                 id="inputTelephone" 
                                 name="telephone" 
-                                placeholder="Enter visitor telephone"
                                 value="{{old('telephone')}}"
                                 >
                             </div>
+                            
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary px-5">{{__('Send')}}</button>
                             </div>

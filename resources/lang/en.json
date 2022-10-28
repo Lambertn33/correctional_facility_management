@@ -116,5 +116,9 @@
     "request has been sent successfully": "request has been sent successfully",
     "Appointment plan": "Appointment plan",
     "New Appointment Request": "New Appointment Request",
-    "Send": "Send"
+    "Send": "Send",
+
+    "Meeting Ended": "Meeting Ended",
+    "Meeting Information": "Meeting Information",
+    "Visitor Code": "Visitor Code"
 }

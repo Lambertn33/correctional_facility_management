@@ -94,7 +94,7 @@
     "Inmate": "Detenu(e)",
     "Update": "Mise à jour",
 
-    "Visitor Names": "Noms des Visiteurs",
+    "Visitor Names": "Noms des Visiteur",
     "Payment Status": "Statut de paiement",
     "Paid": "Payé",
     "Unpaid": "Non payé",
@@ -116,5 +116,9 @@
     "request has been sent successfully": "la demande a été envoyée avec succès",    
     "Appointment plan": "Plan de rendez-vous",
     "New Appointment Request": "Nouvelle demande de rendez-vous",
-    "Send": "Envoyer"
+    "Send": "Envoyer",
+
+    "Meeting Ended": "Réunion terminée",
+    "Meeting Information": "Informations sur la réunion",
+    "Visitor Code": "Code de visiteur"
 }

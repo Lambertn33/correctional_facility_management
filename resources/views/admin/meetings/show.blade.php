@@ -22,12 +22,12 @@
                         <div class="col-lg-8 offset-lg-2">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5><b>Meeting Information</b></h5>
+                                    <h5><b>{{__('Meeting Information')}}</b></h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Inmate Names</h6>
+                                            <h6 class="mb-0">{{__('Inmate Names')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{$currentMeeting->appointment->inmate->names}}" />
@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Inmate Code</h6>
+                                            <h6 class="mb-0">{{__('Inmate Code')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{$currentMeeting->meetingCodes->inmate_code}}" />
@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Visitor Names</h6>
+                                            <h6 class="mb-0">{{__('Visitor Names')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{$currentMeeting->appointment->names}}" />
@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Visitor Code</h6>
+                                            <h6 class="mb-0">{{__('Visitor Code')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{$currentMeeting->meetingCodes->visitor_code}}" />
@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">From</h6>
+                                            <h6 class="mb-0">{{__('From')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{$currentMeeting->appointment->from}}" />
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">To</h6>
+                                            <h6 class="mb-0">{{__('To')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{$currentMeeting->appointment->to}}" />
