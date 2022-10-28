@@ -28,15 +28,15 @@
 
 @section('content')
 <form action="{{route('requestAppointment')}}" method="post">
-    <h4 class="text-center pb-4">Make Appointment</h4>
+    <h4 class="text-center pb-4">{{__('Make an appointment')}}</h4>
     @if (Session::has('error'))
         <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
-            <div class="text-white"><b>{{ Session::get('error') }}</b></div>
+            <div class="text-white"><b>{{ __(Session::get('error') )}}</b></div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @elseif(Session::has('success'))
         <div class="alert alert-success border-0 bg-success alert-dismissible fade show">
-            <div class="text-white"><b>{{ Session::get('success') }}</b></div>
+            <div class="text-white"><b>{{ __(Session::get('success') )}}</b></div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif  
@@ -44,19 +44,18 @@
     <div class="border border-3 p-4 rounded">
         <div class="row g-3">
             <div class="col-md-6">
-              <label for="inputNames" class="form-label">Names <span>*</span></label>
+              <label for="inputNames" class="form-label">{{__('Names')}} <span>*</span></label>
               <input
               type="text" 
               class="form-control" 
-              required id="inputNames" 
-              placeholder="Enter your names" 
+              required id="inputNames"  
               name="names"
               value="{{old('names')}}"
               >
             </div>
 
             <div class="col-md-6">
-              <label for="inputTelephone" class="form-label">Telephone(format 250...) <span>*</span></label>
+              <label for="inputTelephone" class="form-label">{{__('Telephone(format 250...)')}} <span>*</span></label>
               <input 
               type="tel" 
               class="form-control" 
@@ -64,13 +63,12 @@
               minlength="12" 
               id="inputTelephone" 
               name="telephone" 
-              placeholder="Enter your telephone"
               value="{{old('telephone')}}"
               >
             </div>
 
             <div class="col-md-6">
-                <label for="inputNationalId" class="form-label">Your National ID <span>*</span></label>
+                <label for="inputNationalId" class="form-label">{{__('Your National ID')}} <span>*</span></label>
                 <input 
                 type="number"
                 maxlength="16"
@@ -78,49 +76,45 @@
                 minlength="16" 
                 class="form-control" 
                 required id="inputNationalId" 
-                placeholder="Enter your national ID" 
                 name="nationalId"
                 value="{{old('nationalId')}}"
                 >
               </div>
 
               <div class="col-md-6">
-                <label for="inputNames" class="form-label">Inmate Names <span>*</span></label>
+                <label for="inputNames" class="form-label">{{__('Inmate Names')}} <span>*</span></label>
                 <input
                 type="text" 
                 class="form-control" 
-                required id="inputNames" 
-                placeholder="Enter Inmate names" 
+                required id="inputNames" " 
                 name="inmate_names"
                 value="{{old('inmate_names')}}"
                 >
             </div>
 
             <div class="col-md-6">
-                <label for="inputNames" class="form-label">Inmate Father Names</label>
+                <label for="inputNames" class="form-label">{{__('Inmate Father Names')}}</label>
                 <input
                 type="text" 
-                class="form-control"  id="inputNames" 
-                placeholder="Enter Inmate Father names" 
+                class="form-control"  id="inputNames"  
                 name="father_names"
                 value="{{old('father_names')}}"
                 >
             </div>
             <div class="col-md-6">
-                <label for="inputNames" class="form-label">Inmate Mother Names</label>
+                <label for="inputNames" class="form-label">{{__('Inmate Mother Names')}}</label>
                 <input
                 type="text" 
                 class="form-control" id="inputNames" 
-                placeholder="Enter Inmate Mother names" 
                 name="mother_names"
                 value="{{old('mother_names')}}"
                 >
             </div>
 
             <div class="col-md-6">
-                <label for="inputPrison" class="form-label">Select Prison <span>*</span></label>
+                <label for="inputPrison" class="form-label">{{__('Select Prison')}} <span>*</span></label>
                 <select class="form-select" id="inputPrison" required name="prison">
-                  <option selected disabled value="">Select Prison</option>
+                  <option selected disabled value="">{{__('Select Prison')}}</option>
                   @foreach ($allPrisons as $item)
                       <option {{$item->id === old('prison') ? 'selected': ''}} value="{{$item->id}}">{{$item->name}}</option>
                   @endforeach
@@ -128,7 +122,7 @@
             </div>
 
             <div class="col-md-6">
-                <label for="inputInmateId" class="form-label">Inmate National ID</label>
+                <label for="inputInmateId" class="form-label">{{__('Inmate National ID')}}</label>
                 <input type="number"
                  maxlength="16"
                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
@@ -136,10 +130,10 @@
                  id="inputInmateId" 
                  name="inmateNationalId" 
                  value="{{old('inmateNationalId')}}"
-                 placeholder="Enter Inmate National ID">
+            >
             </div>
             <div class="col-md-4">
-                <label for="" class="form-label">Visit Date <span>*</span></label>
+                <label for="" class="form-label">{{__('Visit Date')}} <span>*</span></label>
                 <input type="date"
                 class="form-control"
                 name="visitDate"
@@ -149,15 +143,15 @@
                 >
             </div>
             <div class="col-md-4">
-                <label for="" class="form-label">Visit Time <span>*</span></label>
+                <label for="" class="form-label">{{__('Visit Time')}} <span>*</span></label>
                 <select class="form-select" name="visitTime" id="visitTime" required>
-                    <option selected disabled value="">Select time</option>
+                    <option selected disabled value="">{{__('Select time')}}</option>
                 </select>
             </div>
             <div class="col-md-4">
-                <label for="inputPrison" class="form-label">Select Tariff <span>*</span></label>
+                <label for="inputPrison" class="form-label">{{__('Select Tariff')}} <span>*</span></label>
                 <select class="form-select" id="inputPrison" required name="tariff">
-                  <option selected disabled value="">Select Tariff</option>
+                  <option selected disabled value="">{{__('Select Tariff')}}</option>
                   @foreach ($allTariffs as $item)
                       <option {{$item->id === old('tariff') ? 'selected': ''}} value="{{$item->id}}">{{$item->time}}mins ({{$item->amount}}FRWS)</option>
                   @endforeach
@@ -166,9 +160,9 @@
 
             <div class="col-12">
                 <div class="d-grid">
-                   <button type="submit" class="btn btn-primary btn-lg px-md-5 radius-30 btn-text">Request appointment</button>
+                   <button type="submit" class="btn btn-primary btn-lg px-md-5 radius-30 btn-text">{{__('Request Appointment')}}</button>
                    <br>
-                   <a href="{{route('getMeetingPage')}}" class="btn btn-success btn-lg px-md-5 radius-30 btn-text">Join Video</a>
+                   <a href="{{route('getMeetingPage')}}" class="btn btn-success btn-lg px-md-5 radius-30 btn-text">{{__('Join Video')}}</a>
                 </div>
             </div>
         </div> 

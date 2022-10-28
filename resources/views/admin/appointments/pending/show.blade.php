@@ -4,14 +4,14 @@
     <div class="page-wrapper">
         <div class="page-content">
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Appointments</div>
+                <div class="breadcrumb-title pe-3">{{__('Appointments')}}</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="{{route('getAdminDashboardOverview')}}"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item" aria-current="page"><a href="{{route('getPendingAppointments')}}">Pending Appointments</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Appointment Details</li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="{{route('getPendingAppointments')}}">{{__('Pending Appointments')}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{__('Full details')}}</li>
                         </ol>
                     </nav>
                 </div>
@@ -19,10 +19,10 @@
             <div class="container">
                 <div class="main-body">
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-7">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5><b>Appointment Information</b></h5>
+                                    <h5><b>{{__('Appointment information')}}</b></h5>
                                 </div>
                                 <div class="card-body">
                                     @if (Session::has('error'))
@@ -33,7 +33,7 @@
                                     @endif
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Visitor Names</h6>
+                                            <h6 class="mb-0">{{__('Visitor Names')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{$pendingAppointment->names}}" />
@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Visitor National ID</h6>
+                                            <h6 class="mb-0">{{__('National ID')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{$pendingAppointment->national_id}}" />
@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Visitor Telephone</h6>
+                                            <h6 class="mb-0">{{__('Telephone')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{$pendingAppointment->telephone}}" />
@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Inmate Names</h6>
+                                            <h6 class="mb-0">{{__('Inmate Names')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{$pendingAppointment->inmate->names}}" />
@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Inmate National ID</h6>
+                                            <h6 class="mb-0">{{__('Inmate National ID')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{$pendingAppointment->inmate->national_id}}" />
@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Visit Date</h6>
+                                            <h6 class="mb-0">{{__('Visit Date')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="date" class="form-control" disabled value="{{date('Y-m-d', strtotime($pendingAppointment->date))}}" />
@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">From</h6>
+                                            <h6 class="mb-0">{{__('From')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{date('h:i:s', strtotime($pendingAppointment->from))}}" />
@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">To</h6>
+                                            <h6 class="mb-0">{{__('To')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{date('h:i:s', strtotime($pendingAppointment->to))}}" />
@@ -97,7 +97,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Requested on</h6>
+                                            <h6 class="mb-0">{{__('Requested on')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="date" class="form-control" disabled value="{{date('Y-m-d', strtotime($pendingAppointment->created_at))}}" />
@@ -107,8 +107,8 @@
                                         <div class="row">
                                             <div class="col-sm-3"></div>
                                             <div class="col-sm-9 text-secondary">
-                                                <a href="#" class="btn btn-success" onclick="document.getElementById('{{$pendingAppointment}}-approve').submit();">Approve Appointment</a>
-                                                <a href="#" class="btn btn-danger"  onclick="document.getElementById('{{$pendingAppointment}}-reject').submit();">Reject Appointment</a>
+                                                <a href="#" class="btn btn-success" onclick="document.getElementById('{{$pendingAppointment}}-approve').submit();">{{__('Approve Appointment')}}</a>
+                                                <a href="#" class="btn btn-danger"  onclick="document.getElementById('{{$pendingAppointment}}-reject').submit();">{{__('Reject Appointment')}}</a>
 
                                                 <form action="{{route('approveSinglePendingAppointment', $pendingAppointment->id)}}" method="post" id="{{$pendingAppointment}}-approve" class="d-none">
                                                     <input type="hidden" name="_method" value="PUT">
@@ -124,10 +124,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-5">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5><b>Payment Information</b></h5>
+                                    <h5><b>{{__('Payment Information')}}</b></h5>
                                 </div>
                                 <div class="card-body">
                                     @if (Session::has('error'))
@@ -138,7 +138,7 @@
                                     @endif
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Amount</h6>
+                                            <h6 class="mb-0">{{__('Amount')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{$pendingAppointment->tariff->amount}} FRWS" />
@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Duration</h6>
+                                            <h6 class="mb-0">{{__('Duration')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" disabled value="{{$pendingAppointment->tariff->time}} minutes" />
@@ -154,7 +154,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Payment Status</h6>
+                                            <h6 class="mb-0">{{__('Payment Status')}}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             @if (strtoupper($pendingAppointment->payment->status) == \App\Models\Payment::PENDING)

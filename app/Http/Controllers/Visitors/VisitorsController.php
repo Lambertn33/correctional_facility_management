@@ -16,8 +16,11 @@ use Illuminate\Support\Facades\DB;
 
 class VisitorsController extends Controller
 {
-    public function  getHomePage()
+    public function  getHomePage(Request $request)
     {
+        if (!$request->session()->has('locale')) {
+            $request->session()->put('locale', app()->getLocale());
+        }
         return view('visitors.index');
     }
     
@@ -145,6 +148,7 @@ class VisitorsController extends Controller
                 return back()->withInput()->with('error', ''.$errorMessage.'');           
             }
         } catch (\Throwable $th) {
+            throw $th;
             DB::rollback();
             return back()->withInput()->with('error','an error occured....please try again');
         }

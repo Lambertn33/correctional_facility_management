@@ -39,11 +39,20 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent1">
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-						<li class="nav-item"> <a class="nav-link active" aria-current="page" href="{{route('getHomePage')}}"><i class='bx bx-home-alt me-1'></i>Home</a>
+						<li class="nav-item dropdown">
+							<select class="form-select" name="languageChange" id="languageChange" required>
+								<option selected disabled value="">Select Language</option>
+								<option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
+								<option value="fr" {{ session()->get('locale') == 'fr' ? 'selected' : '' }}>Francais</option>
+								<option value="rw" {{ session()->get('locale') == 'rw' ? 'selected' : '' }}>Kinyarwanda</option>
+							</select>
+							@csrf
+						  </li>
+						<li class="nav-item"> <a class="nav-link active" aria-current="page" href="{{route('getHomePage')}}"><i class='bx bx-home-alt me-1'></i>{{__('Home')}}</a>
 						</li>
-						<li class="nav-item"> <a class="nav-link active" aria-current="page" href="{{route('getAppointmentsPage')}}"><i class='bx bx-home-alt me-1'></i>Appointments</a>
+						<li class="nav-item"> <a class="nav-link active" aria-current="page" href="{{route('getAppointmentsPage')}}"><i class='bx bx-home-alt me-1'></i>{{__('Appointments')}}</a>
 						</li>
-						<li class="nav-item"> <a class="nav-link active" aria-current="page" href="{{route('getLoginPage')}}"><i class='bx bx-log-in me-1'></i>Login</a>
+						<li class="nav-item"> <a class="nav-link active" aria-current="page" href="{{route('getLoginPage')}}"><i class='bx bx-log-in me-1'></i>{{__('Login')}}</a>
 						</li>
 					</ul>
 				</div>
@@ -60,13 +69,15 @@
 										<img src="/assets/images/logo-e-huza.png" width="240">
 									</div>
 									<br>
-									<p style="font-size: 1.875rem;text-align:center;">Establishing relationships with inmate's family, friends, and various service providers. <br>
+									<p style="font-size: 1.875rem;text-align:center;">
+										{{__("Establishing relationships with inmate's family, friends, and various service providers.")}}
+										<br>
 										
 									</p>
 									@if (\Request::route()->getName() === 'getHomePage')
 										<div style="text-align:center">
-											<a href="{{route('getAppointmentsPage')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Request Appointment</a><br><br>
-											<a href="{{route('provideNationalId')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">Join Video</a>
+											<a href="{{route('getAppointmentsPage')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">{{__("Request Appointment")}}</a><br><br>
+											<a href="{{route('provideNationalId')}}" class="btn" style="background-color: #1ab2ff;color:#fff;">{{__("Join Video")}}</a>
 										</div>
 									@endif
 								</div>
@@ -94,3 +105,25 @@
 
 <!-- Mirrored from codervent.com/rukada/demo/horizontal/errors-coming-soon.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Sep 2022 13:55:23 GMT -->
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+		$("#languageChange").change(function(){
+			var url = "{{ route('changeLanguage') }}"; 
+			var token = $("input[name=_token]").val();
+			var lang = $(this).val();
+
+			$.ajax({
+				url,
+				type: 'POST',
+				data: {
+					_token: token,
+					lang: lang
+				},
+				success: function(res) {
+					window.location.reload();
+				}
+			})
+        });
+    });
+</script>

@@ -43,7 +43,7 @@ class MeetingsController extends Controller
                 $meetingToken = $checkCode->first();
                 $meeting = $meetingToken->meeting;
                 if ($meeting->meeting_ended) {
-                    return back()->withInput()->with('error', 'this meeting has been ended on '.$meeting->appointment->date.' at ' .date('h:i:s', strtotime($meeting->appointment->from)) . ' ');
+                    return back()->withInput()->with('error', 'this meeting has been ended');
                 }
                 $now = now()->format('Y-m-d H:i:s');
                 $meetingStart = $meeting->appointment->from;

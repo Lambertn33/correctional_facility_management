@@ -52,10 +52,10 @@ class AppointmentsController extends Controller
             DB::commit();
             // Create 100MS room and notify user about approval
             dispatch(new CreateRoom($pendingAppointment, $pendingAppointment->inmate, true));
-            return redirect()->route('getPendingAppointments')->with('success', 'appointment approved successfully');
+            return redirect()->route('getPendingAppointments')->with('success', 'Appointment approved successfully');
         } catch (\Throwable $th) {
             DB::rollBack();
-            return back()->with('error', 'an error occured...please try again');
+            return back()->with('error', 'an error occured.. please try again');
         }
     }
 
@@ -70,10 +70,10 @@ class AppointmentsController extends Controller
             // Send SMS To User Notifying
             DB::commit();
             dispatch(new AppointmentStatus($pendingAppointment, $pendingAppointment->inmate, false, null));
-            return redirect()->route('getPendingAppointments')->with('success', 'appointment rejected successfully');
+            return redirect()->route('getPendingAppointments')->with('success', 'Appointment rejected successfully');
         } catch (\Throwable $th) {
             DB::rollBack();
-            return back()->with('error', 'an error occured...please try again');
+            return back()->with('error', 'an error occured.. please try again');
         }
     }
 

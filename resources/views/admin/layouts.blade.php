@@ -94,7 +94,15 @@
 					<div class="mobile-toggle-menu"><i class='bx bx-menu'></i></div>
 					<div class="top-menu ms-auto">
 						<ul class="navbar-nav align-items-center">
-							
+							<li class="nav-item dropdown">
+								<select class="form-select" name="languageChange" id="languageChange" required>
+									<option selected disabled value="">Select Language</option>
+									<option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
+									<option value="fr" {{ session()->get('locale') == 'fr' ? 'selected' : '' }}>Francais</option>
+									<option value="rw" {{ session()->get('locale') == 'rw' ? 'selected' : '' }}>Kinyarwanda</option>
+								</select>
+								@csrf
+							  </li>
 						</ul>
 					</div>
 					<div class="user-box dropdown">
@@ -138,19 +146,19 @@
 						<a  class="nav-link" href="{{route('getAdminDashboardOverview')}}">
 							<div class="parent-icon"><i class='bx bx-home-circle'></i>
 							</div>
-							<div class="menu-title">Dashboard</div>
+							<div class="menu-title">{{__('Dashboard')}}</div>
 						</a>
 					 </li>
                     <li class="nav-item dropdown">
                         <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
                             <div class="parent-icon"><i class='bx bx-user'></i>
                             </div>
-                            <div class="menu-title">Inmates</div>
+                            <div class="menu-title">{{__('Inmates')}}</div>
                         </a>
                         <ul class="dropdown-menu">
-                            <li> <a class="dropdown-item" href="{{route('getPrisonInmates')}}"><i class="bx bx-right-arrow-alt"></i>Inmates List</a>
+                            <li> <a class="dropdown-item" href="{{route('getPrisonInmates')}}"><i class="bx bx-right-arrow-alt"></i>{{__('Inmates List')}}</a>
                             </li>
-                            <li> <a class="dropdown-item" href="{{route('createNewPrisonInmate')}}"><i class="bx bx-right-arrow-alt"></i>Add New</a>
+                            <li> <a class="dropdown-item" href="{{route('createNewPrisonInmate')}}"><i class="bx bx-right-arrow-alt"></i>{{__('Add New')}}</a>
                             </li>
                         </ul>
                     </li>
@@ -158,14 +166,14 @@
                         <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
                             <div class="parent-icon"><i class='bx bx-folder'></i>
                             </div>
-                            <div class="menu-title"> Incoming Appointments</div>
+                            <div class="menu-title">{{__('Incoming Appointments')}}</div>
                         </a>
                         <ul class="dropdown-menu">
-                            <li> <a class="dropdown-item" href="{{route('getApprovedAppointments')}}"><i class="bx bx-right-arrow-alt"></i>Approved Appointments</a>
+                            <li> <a class="dropdown-item" href="{{route('getApprovedAppointments')}}"><i class="bx bx-right-arrow-alt"></i>{{__('Approved Appointments')}}</a>
                             </li>
-                            <li> <a class="dropdown-item" href="{{route('getPendingAppointments')}}"><i class="bx bx-right-arrow-alt"></i>Pending Appointments</a>
+                            <li> <a class="dropdown-item" href="{{route('getPendingAppointments')}}"><i class="bx bx-right-arrow-alt"></i>{{__('Pending Appointments')}}</a>
                             </li>
-                            <li> <a class="dropdown-item" href="{{route('getRejectedAppointments')}}"><i class="bx bx-right-arrow-alt"></i>Rejected Appointments</a>
+                            <li> <a class="dropdown-item" href="{{route('getRejectedAppointments')}}"><i class="bx bx-right-arrow-alt"></i>{{__('Rejected Appointments')}}</a>
                             </li>
                         </ul>
                     </li>
@@ -173,10 +181,10 @@
                         <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
                             <div class="parent-icon"><i class='bx bx-folder'></i>
                             </div>
-                            <div class="menu-title"> Outgoing Appointments</div>
+                            <div class="menu-title"> {{__('Outgoing Appointments')}}</div>
                         </a>
                         <ul class="dropdown-menu">
-                            <li> <a class="dropdown-item" href="{{route('createOutgoingAppointment')}}"><i class="bx bx-right-arrow-alt"></i>Request Appointment</a>
+                            <li> <a class="dropdown-item" href="{{route('createOutgoingAppointment')}}"><i class="bx bx-right-arrow-alt"></i>{{__('Request Appointment')}}</a>
                             </li>
                         </ul>
                     </li>
@@ -184,10 +192,10 @@
                         <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
                             <div class="parent-icon"><i class='bx bx-folder'></i>
                             </div>
-                            <div class="menu-title"> Meetings</div>
+                            <div class="menu-title"> {{__('Meetings')}}</div>
                         </a>
                         <ul class="dropdown-menu">
-                            <li> <a class="dropdown-item" href="{{route('getAllMeetings')}}"><i class="bx bx-right-arrow-alt"></i>View Meetings</a>
+                            <li> <a class="dropdown-item" href="{{route('getAllMeetings')}}"><i class="bx bx-right-arrow-alt"></i>{{__('View Meetings')}}</a>
                             </li>
                         </ul>
                     </li>
@@ -234,3 +242,25 @@
 
 <!-- Mirrored from codervent.com/rukada/demo/horizontal/dashboard-eCommerce.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Sep 2022 13:50:18 GMT -->
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+		$("#languageChange").change(function(){
+			var url = "{{ route('changeLanguage') }}"; 
+			var token = $("input[name=_token]").val();
+			var lang = $(this).val();
+
+			$.ajax({
+				url,
+				type: 'POST',
+				data: {
+					_token: token,
+					lang: lang
+				},
+				success: function(res) {
+					window.location.reload();
+				}
+			})
+        });
+    });
+</script>

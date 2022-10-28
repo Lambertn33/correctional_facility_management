@@ -4,18 +4,18 @@
     <div class="page-wrapper">
         <div class="page-content">
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Inmates</div>
+                <div class="breadcrumb-title pe-3">{{__('Inmates')}}</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="{{route('getAdminDashboardOverview')}}"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Inmates <b class="text-success">({{$currentPrisonInmates->count()}})</b></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{__('Inmates')}} <b class="text-success">({{$currentPrisonInmates->count()}})</b></li>
                         </ol>
                     </nav>
                 </div>
                 <div class="ms-auto">
-                    <a href="{{route('createNewPrisonInmate')}}" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Inmate</a>
+                    <a href="{{route('createNewPrisonInmate')}}" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>{{__('Add New Inmate')}}</a>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
             <div class="card-body">
                 @if (Session::has('success'))
                     <div class="alert alert-success border-0 bg-success alert-dismissible fade show">
-                        <div class="text-white">{{Session::get('success')}}</div>
+                        <div class="text-white">{{__(Session::get('success'))}}</div>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
@@ -32,10 +32,10 @@
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
-                                <th>Inmate Names</th>
-                                <th>Inmate Code</th>
-                                <th>Inmate National ID</th>
-                                <th>Inmate Status</th>
+                                <th>{{__('Inmate Names')}}</th>
+                                <th>{{__('Inmate Code')}}</th>
+                                <th>{{__('Inmate National ID')}}</th>
+                                <th>{{__('Inmate Status')}}</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -65,14 +65,14 @@
                                         @endif
                                     </td>
                                     <td class="">
-                                      <a href="#" class="text-danger"  data-bs-toggle="modal" data-bs-target=".bs-{{$item->id}}-details"><b>View More</b></a>
-                                      <a href="{{route('editPrisonInmate', $item->id)}}" class="text-info" style="margin-left: 0.25rem"><b>Edit</b></a>
+                                      <a href="#" class="text-danger"  data-bs-toggle="modal" data-bs-target=".bs-{{$item->id}}-details"><b>{{__('View More')}}</b></a>
+                                      <a href="{{route('editPrisonInmate', $item->id)}}" class="text-info" style="margin-left: 0.25rem"><b>{{__('Edit')}}</b></a>
                                     </td>
                                     <div class="modal fade bs-{{$item->id}}-details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog">
                                           <div class="modal-content">
                                               <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLabel">Inmate More Details</h5>
+                                                  <h5 class="modal-title" id="exampleModalLabel">{{__('More details')}}</h5>
                                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                               </div>
                                               <div class="modal-body">
@@ -82,10 +82,10 @@
                                                       <div class="card">
                                                           <div class="card-body">
                                                               <ul class="list-group">
-                                                                  <li class="list-group-item">Father Names: <b>{{$item->father_names}}</b></li>
-                                                                  <li class="list-group-item">Mother Names: <b>{{$item->mother_names}}</b></li>
-                                                                  <li class="list-group-item">Reason: <b>{{$item->reason}}</b></li>
-                                                                  <li class="list-group-item">In Date: <b>{{$item->in_date}}</b></li>
+                                                                  <li class="list-group-item">{{__('Father Names')}}: <b>{{$item->father_names}}</b></li>
+                                                                  <li class="list-group-item">{{__('Mother Names')}}: <b>{{$item->mother_names}}</b></li>
+                                                                  <li class="list-group-item">{{__('Reason')}}: <b>{{$item->reason}}</b></li>
+                                                                  <li class="list-group-item">{{__('In Date')}}: <b>{{$item->in_date}}</b></li>
                                                               </ul>
                                                           </div>
                                                       </div>

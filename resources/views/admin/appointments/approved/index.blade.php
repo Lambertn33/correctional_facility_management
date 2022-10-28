@@ -4,13 +4,13 @@
     <div class="page-wrapper">
         <div class="page-content">
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Appointments</div>
+                <div class="breadcrumb-title pe-3">{{__('Appointments')}}</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="{{route('getAdminDashboardOverview')}}"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Approved Appointments <b class="text-success">({{$approvedAppointments->count()}})</b></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{__('Approved Appointments')}} <b class="text-success">({{$approvedAppointments->count()}})</b></li>
                         </ol>
                     </nav>
                 </div>
@@ -29,11 +29,11 @@
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
-                                <th>Visitor Names</th>
-                                <th>Inmate Names</th>
-                                <th>Inmate Code</th>
-                                <th>Visit Date</th>
-                                <th>Payment Status</th>
+                                <th>{{__('Visitor Names')}}</th>
+                                <th>{{__('Inmate Names')}}</th>
+                                <th>{{__('Inmate Code')}}</th>
+                                <th>{{__('Visit Date')}}</th>
+                                <th>{{__('Payment Status')}}</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -58,48 +58,46 @@
                                     <td>{{$item->date}}</td>
                                     <td>
                                         @if ($item->payment)
-                                            <div class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i class="bx bxs-circle me-1"></i>Paid</div>
+                                            <div class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i class="bx bxs-circle me-1"></i>{{__('Paid')}}</div>
                                         @else
-                                            <div class="badge rounded-pill text-warning bg-light-warning p-2 text-uppercase px-3"><i class="bx bxs-circle align-middle me-1"></i>Unpaid</div>
+                                            <div class="badge rounded-pill text-warning bg-light-warning p-2 text-uppercase px-3"><i class="bx bxs-circle align-middle me-1"></i>{{__('Unpaid')}}</div>
                                         @endif
                                     </td>
                                     <td>
-                                      <a href="#" class="text-danger"  data-bs-toggle="modal" data-bs-target=".bs-{{$item->id}}-details"><b>View More</b></a>
+                                      <a href="#" class="text-danger"  data-bs-toggle="modal" data-bs-target=".bs-{{$item->id}}-details"><b>{{__('View More')}}</b></a>
                                       <div class="modal fade bs-{{$item->id}}-details" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Appointment Full Details</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">{{__('Full details')}}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="col">
-
                                                         <hr/>
                                                         <div class="card">
                                                             <div class="card-body">
-                                                                <h5>Appointment Information</h5>
+                                                                <h5>{{__('Appointment information')}}</h5>
                                                                 <ul class="list-group">
-                                                                    <li class="list-group-item">Visitor Names: <b>{{$item->names}}</b></li>
-                                                                    <li class="list-group-item">Visitor Telephone: <b>{{$item->telephone}}</b></li>
-                                                                    <li class="list-group-item">Visitor National ID: <b>{{$item->national_id}}</b></li>
-                                                                    <li class="list-group-item">Inmate Names: <b>{{$item->inmate->names}}</b></li>
-                                                                    <li class="list-group-item">Inmate National ID: <b>{{$item->inmate->national_id}}</b></li>
-                                                                    <li class="list-group-item">Requested Date: <b>{{$item->date}}</b></li>
-                                                                    <li class="list-group-item">From: <b>{{date('h:i:s', strtotime($item->from))}}</b></li>
-                                                                    <li class="list-group-item">To: <b>{{date('h:i:s', strtotime($item->to))}}</b></li>
+                                                                    <li class="list-group-item">{{__('Visitor Names')}}: <b>{{$item->names}}</b></li>
+                                                                    <li class="list-group-item">{{__('Telephone')}}: <b>{{$item->telephone}}</b></li>
+                                                                    <li class="list-group-item">{{__('National ID')}}: <b>{{$item->national_id}}</b></li>
+                                                                    <li class="list-group-item">{{__('Inmate Names')}}: <b>{{$item->inmate->names}}</b></li>
+                                                                    <li class="list-group-item">{{__('Inmate National ID')}}: <b>{{$item->inmate->national_id}}</b></li>
+                                                                    <li class="list-group-item">{{__('Requested Date')}}: <b>{{$item->date}}</b></li>
+                                                                    <li class="list-group-item">{{__('From')}}: <b>{{date('h:i:s', strtotime($item->from))}}</b></li>
+                                                                    <li class="list-group-item">{{__('To')}}: <b>{{date('h:i:s', strtotime($item->to))}}</b></li>
                                                                 </ul>
                                                                 <hr>
-                                                                <h5>Payment Information</h5>
+                                                                <h5>{{__('Payment Information')}}</h5>
                                                                @if ($item->tariff)
                                                                <ul class="list-group">
-                                                                <li class="list-group-item">Appointment Plan: <b>{{$item->tariff->amount}} RWFS -{{$item->tariff->time}} minutes</b></li>
-                                                                <li class="list-group-item">Payment Status :
-                                                                 <!--TODO CHECK PAYMENT STATUS-->
+                                                                <li class="list-group-item">{{__('Appointment plan')}}: <b>{{$item->tariff->amount}} RWFS -{{$item->tariff->time}} minutes</b></li>
+                                                                <li class="list-group-item">{{__('Payment Status')}} :
                                                                      @if ($item->payment)
-                                                                        <div class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i class="bx bxs-circle me-1"></i>Paid</div>
+                                                                        <div class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i class="bx bxs-circle me-1"></i>{{__('Paid')}}</div>
                                                                      @else
-                                                                         <div class="badge rounded-pill text-warning bg-light-warning p-2 text-uppercase px-3"><i class="bx bxs-circle align-middle me-1"></i>Unpaid</div>
+                                                                         <div class="badge rounded-pill text-warning bg-light-warning p-2 text-uppercase px-3"><i class="bx bxs-circle align-middle me-1"></i>{{__('Unpaid')}}</div>
                                                                      @endif
                                                                 </li>
                                                             </ul>
