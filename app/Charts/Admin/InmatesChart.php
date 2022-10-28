@@ -29,6 +29,6 @@ class InmatesChart
         }
         return $this->chart->pieChart()
             ->addData([$activeInmates, $inactiveInmates, $totalAppointments])
-            ->setLabels(['Inmates', 'Left Inmates', 'total Appointments']);
+            ->setLabels(['Inmates', 'Left Inmates', 'Total Appointments']);
     }
 }

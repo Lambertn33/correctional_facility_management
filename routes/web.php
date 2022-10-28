@@ -8,6 +8,7 @@ use App\Http\Controllers\Common\MeetingsController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashboardController;
 use App\Http\Controllers\Visitors\VisitorsController;
 use App\Http\Controllers\Admin\MeetingsController as AdminMeetingsController;
+use App\Http\Controllers\Common\LanguageSwitcher;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/lang', [LanguageSwitcher::class, 'changeLanguage'])->name('changeLanguage');
+
 
 //Authentication Routes
 Route::controller(AuthenticationController::class)->group(function (){
@@ -108,5 +111,6 @@ Route::prefix('admin')->group(function() {
     //Meetings
     Route::controller(AdminMeetingsController::class)->prefix('meetings')->group(function() {
         Route::get('/', 'getAllMeetings')->name('getAllMeetings');
+        Route::get('/{meeting}', 'getSpecificMeeting')->name('getSpecificMeeting');
     });
 });

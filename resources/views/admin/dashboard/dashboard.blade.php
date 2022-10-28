@@ -10,9 +10,9 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <p class="mb-0 text-white">Inmates</p>
+                                <p class="mb-0 text-white">{{__('Inmates')}}</p>
                                 <h4 class="my-1 text-white">{{$activeInmates}}</h4>
-                                <p class="mb-0 font-13 text-white">Total Active Inmates</p>
+                                <p class="mb-0 font-13 text-white">{{__('Total Active Inmates')}}</p>
                             </div>
                             <div class="widgets-icons bg-light-transparent text-white ms-auto"><i class="bx bxs-user"></i>
                             </div>
@@ -25,9 +25,9 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <p class="mb-0 text-white">Inmates</p>
+                                <p class="mb-0 text-white">{{__('Inmates')}}</p>
                                 <h4 class="my-1 text-white">{{$inactiveInmates}}</h4>
-                                <p class="mb-0 font-13 text-white">Total Inactive Inmates</p>
+                                <p class="mb-0 font-13 text-white">{{__('Total Inactive Inmates')}}</p>
                             </div>
                             <div class="widgets-icons bg-light-transparent text-white ms-auto"><i class="bx bxs-user-x"></i>
                             </div>
@@ -40,9 +40,9 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <p class="mb-0 text-white">Appointments</p>
+                                <p class="mb-0 text-white">{{__('Appointments')}}</p>
                                 <h4 class="my-1 text-white">{{$currentMonthAppointments}}</h4>
-                                <p class="mb-0 font-13 text-white">Total Appointments This Month</p>
+                                <p class="mb-0 font-13 text-white">{{__('Total Appointments This Month')}}</p>
                             </div>
                             <div class="widgets-icons bg-light-transparent text-white ms-auto"><i class="bx bxs-credit-card-front"></i>
                             </div>
@@ -55,9 +55,9 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <p class="mb-0 text-white">Appointments</p>
+                                <p class="mb-0 text-white">{{__('Appointments')}}</p>
                                 <h4 class="my-1 text-white">{{$todayAppointments}}</h4>
-                                <p class="mb-0 font-13 text-white">Total Appointments Today</p>
+                                <p class="mb-0 font-13 text-white">{{__('Total Appointments Today')}}</p>
                             </div>
                             <div class="widgets-icons bg-light-transparent text-white ms-auto"><i class="bx bxs-credit-card-front"></i>
                             </div>
@@ -74,7 +74,7 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center">
 							<div>
-								<h5 class="mb-0">Latest Pending Appointments</h5>
+								<h5 class="mb-0">{{__('Latest Pending Appointments')}}</h5>
 							</div>
 							<div class="font-22 ms-auto"><i class='bx bx-dots-horizontal-rounded'></i>
 							</div>
@@ -105,10 +105,10 @@
 								</tbody>
 							</table>
 						</div>
-                        <a href="{{route('getPendingAppointments')}}" class="btn btn-primary">View More</a>
+                        <a href="{{route('getPendingAppointments')}}" class="btn btn-primary">{{__('View More')}}</a>
                         @else
                             <div class="d-flex">
-                                <h5 class="text-danger">No Available Pending Appointments</h5>
+                                <h5 class="text-danger">{{__('No Available Pending Appointments')}}</h5>
                             </div>
                         @endif
 					</div>
@@ -118,7 +118,7 @@
               <div class="card radius-10 overflow-hidden">
                 <div class="card-body">
                   <div class="mb-1">
-                    <h5 class="mb-0">{{$currentPrison->name}} Chart Summary</h5>
+                    <h5 class="mb-0">{{$currentPrison->name}} {{__('Chart Summary')}}</h5>
                   <div class="chart-js-container2 mt-4">
                         {!!$inmatesChart->container()!!}
                   </div>

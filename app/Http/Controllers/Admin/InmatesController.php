@@ -67,10 +67,10 @@ class InmatesController extends Controller
             ];
             Inmate::insert($newInmate);
             DB::commit();
-            return redirect()->route('getPrisonInmates')->with('success', 'new Inmate saved successfully');
+            return redirect()->route('getPrisonInmates')->with('success', 'New inmate saved successfully');
          } catch (\Throwable $th) {
             DB::rollback();
-            return back()->withInput()->with('error','an error occured....please try again');
+            return back()->withInput()->with('error','an error occured.. please try again');
          }
     }
 
@@ -96,7 +96,7 @@ class InmatesController extends Controller
             return redirect()->route('getPrisonInmates')->with('success', 'Inmate updated successfully');
         } catch (\Throwable $th) {
             DB::rollback();
-            return back()->withInput()->with('error','an error occured....please try again');
+            return back()->withInput()->with('error','an error occured.. please try again');
         }
         return $request->all();
     }

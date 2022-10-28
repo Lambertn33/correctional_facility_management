@@ -43,16 +43,16 @@ class MeetingsController extends Controller
                 $meetingToken = $checkCode->first();
                 $meeting = $meetingToken->meeting;
                 if ($meeting->meeting_ended) {
-                    return back()->withInput()->with('error', 'this meeting has been ended on '.$meeting->appointment->date.' at ' .date('h:i:s', strtotime($meeting->appointment->from)) . ' ');
+                    return back()->withInput()->with('error', 'this meeting has been ended');
                 }
                 $now = now()->format('Y-m-d H:i:s');
                 $meetingStart = $meeting->appointment->from;
                 $meetingDifferenceFromNowInMinutes =  ceil(round(abs(strtotime($meetingStart) - strtotime($now)) /60, 2));
                 if ($meetingDifferenceFromNowInMinutes > 2) {
-                    return back()->withInput()->with('error', 'the meeting is allowed to be joined at lease 2 minutes before');   
+                    return back()->withInput()->with('error', 'the meeting is allowed to be joined at least 2 minutes before');   
                 }
                 $room = $meeting->room_id;
-                $visitorToken =  (new TokensGenerating)->generateToken(false, false, $room);
+                $visitorToken =  (new TokensGenerating)->generateToken(false, false, $room, false);
                 $meetingToken->update([
                     'visitor_token' => $visitorToken
                 ]);
@@ -76,10 +76,10 @@ class MeetingsController extends Controller
                 $meetingStart = $meeting->appointment->from;
                 $meetingDifferenceFromNowInMinutes =  ceil(round(abs(strtotime($meetingStart) - strtotime($now)) /60, 2));
                 if ($meetingDifferenceFromNowInMinutes > 2) {
-                    return back()->withInput()->with('error', 'the meeting is allowed to be joined at lease 2 minutes before');   
+                    return back()->withInput()->with('error', 'the meeting is allowed to be joined at least 2 minutes before');   
                 }
                 $room = $meeting->room_id;
-                $inmateToken =  (new TokensGenerating)->generateToken(false, false, $room);
+                $inmateToken =  (new TokensGenerating)->generateToken(false, false, $room, false);
                 $meetingToken->update([
                     'inmate_token' => $inmateToken
                 ]);

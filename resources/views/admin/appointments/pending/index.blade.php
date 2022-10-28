@@ -4,13 +4,13 @@
     <div class="page-wrapper">
         <div class="page-content">
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Appointments</div>
+                <div class="breadcrumb-title pe-3">{{__('Appointments')}}</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="{{route('getAdminDashboardOverview')}}"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Pending Appointments <b class="text-info">({{$pendingAppointments->count()}})</b></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{__('Pending Appointments')}} <b class="text-info">({{$pendingAppointments->count()}})</b></li>
                         </ol>
                     </nav>
                 </div>
@@ -20,7 +20,13 @@
             <div class="card-body">
                 @if (Session::has('success'))
                     <div class="alert alert-success border-0 bg-success alert-dismissible fade show">
-                        <div class="text-white">{{Session::get('success')}}</div>
+                        <div class="text-white">{{__(Session::get('success'))}}</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                @if (Session::has('error'))
+                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show">
+                        <div class="text-white">{{__(Session::get('error'))}}</div>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
@@ -29,10 +35,10 @@
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
-                                <th>Names</th>
-                                <th>National ID</th>
-                                <th>Inmate Names</th>
-                                <th>Inmate National ID</th>
+                                <th>{{__('Names')}}</th>
+                                <th>{{__('National ID')}}</th>
+                                <th>{{__('Inmate Names')}}</th>
+                                <th>{{__('Inmate National ID')}}</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -47,7 +53,7 @@
                                     <td>{{$item->inmate->names}}</td>
                                     <td>{{$item->inmate->national_id}}</td>
                                     <td>
-                                      <a href="{{route('getSinglePendingAppointment', $item->id)}}" class="text-danger"><b>View More</b></a>
+                                      <a href="{{route('getSinglePendingAppointment', $item->id)}}" class="text-danger"><b>{{__('View More')}}</b></a>
                                     </td>
                                 </tr>
                             @endforeach
