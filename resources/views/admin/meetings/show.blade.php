@@ -4,14 +4,14 @@
     <div class="page-wrapper">
         <div class="page-content">
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Appointments</div>
+                <div class="breadcrumb-title pe-3">{{__('Appointments')}}</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="{{route('getAdminDashboardOverview')}}"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item" aria-current="page"><a href="{{route('getAllMeetings')}}">Meetings</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Meeting Details</li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="{{route('getAllMeetings')}}">{{__('Meetings')}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{__('Meeting details')}}</li>
                         </ol>
                     </nav>
                 </div>
@@ -73,6 +73,13 @@
                                             <input type="text" class="form-control" disabled value="{{$currentMeeting->appointment->to}}" />
                                         </div>
                                     </div>
+                                    @if (!$currentMeeting->meeting_ended)
+                                        @if ($currentMeeting->isMeetingHappeningNow())
+                                            <a href="{{route('generateAdminToken', $currentMeeting->id)}}" class="btn btn-primary">{{__('Join this meeting')}}</a>
+                                        @endif
+                                    @else
+                                        <b class="text-danger">{{__('Meeting has ended')}}</b>
+                                    @endif
                                 </div>
                             </div>
                         </div>

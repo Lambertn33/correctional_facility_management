@@ -199,31 +199,26 @@
 <body>
   <header>
     <img class="logo" src="/assets/images/logo-e-huza.png" width="80" />
-    <button id="leave-btn" class="btn-danger hide">Leave Meeting</button>
+    <div>
+        <button id="leave-btn" class="btn-danger hide">Leave Meeting</button>
+        <button id="stop-btn" class="btn-danger hide">Stop Meeting</button>
+    </div>
   </header>
   <form id="join">
-    <h2>Join Meeting</h2>
+    <h2>Join Meeting between {{$inmate}}(Inmate) and {{$visitor}}(visitor)</h2>
     <div class="input-container">
-      <input id="name" type="text" disabled name="username" value="{{$userType === 'INMATE' ? $meetingInfo->appointment->inmate->names : $meetingInfo->appointment->names}}" />
-    </div>
-    <div class="input-container">
-      <input id="token" type="hidden" name="token" value="{{$userType === 'INMATE' ? $meetingInfo->meetingCodes->inmate_token : $meetingInfo->meetingCodes->visitor_token}}" />
-    </div>
+        <input id="token" type="hidden" name="token" value="{{$meetingToJoin->meetingCodes->admin_token}}" />
+      </div>
     <button type="button" class="btn-primary" id="join-btn">
       Join
     </button>
-    <a href="{{route('provideNationalId')}}" class="btn-success">Back</a>
+    <a href="{{route('getSpecificMeeting', $meetingToJoin->id)}}" class="btn-success">Back</a>
   </form>
 
   <div id="conference" class="conference-section hide">
-    <h2>Meeting with {{$userType === 'INMATE' ? $meetingInfo->appointment->names : $meetingInfo->appointment->inmate->names}} (Time Remaining: <b id="time"></b>)</h2>
+    <h2>Meeting between {{$inmate}}(inmate) and {{$visitor}}(visitor)   (Time Remaining: <b id="time"></b>)</h2>
     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
     <div id="peers-container"></div>
-  </div>
-
-  <div id="controls" class="control-bar hide">
-    <button id="mute-aud" class="btn-control">Mute</button>
-    <button id="mute-vid" class="btn-control">Hide</button>
   </div>
 </body>
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
@@ -249,16 +244,20 @@
       const conference = document.getElementById("conference");
       const peersContainer = document.getElementById("peers-container");
       const leaveBtn = document.getElementById("leave-btn");
+      const stopBtn = document.getElementById("stop-btn");
       const muteAud = document.getElementById("mute-aud");
       const muteVid = document.getElementById("mute-vid");
       const controls = document.getElementById("controls");
       const meetingEnd = "{{$meetingEndTime}}";
-      const meetingId = "{{$meetingInfo->id}}";
+      const meetingId = "{{$meetingToJoin->id}}";
       const token = document.getElementById("token").value;
       let url =  "{{ route('invalidateMeeting', ":meetingId") }}";
+      let endMeetingUrl = "{{route('endMeeting')}}";
       url = url.replace(':meetingId', meetingId);
       let now = Math.round(new Date().getTime() /1000);
       let diffInSeconds = meetingEnd - now;
+
+
       function invalidateMeeting() {
         $.ajax({
           type:'PUT',
@@ -268,7 +267,20 @@
           },
           success:function(data) {
             window.location.reload();
-            window.location.href = "{{ route('provideNationalId')}}";
+          }
+        });
+      }
+
+      function endMeeting() {
+        $.ajax({
+          type:'POST',
+          url: endMeetingUrl,
+          data: {
+            "_token" : "{{csrf_token()}}",
+            meetingId
+          },
+          success:function(data) {
+            window.location.reload();
           }
         });
       }
@@ -316,11 +328,13 @@
       joinBtn.addEventListener("click", () => {
         btnStyles(true);
         hmsActions.join({
-          userName: document.getElementById("name").value,
+          userName: 'admin',
           authToken: document.getElementById("token").value
         });
         startTimer(diffInSeconds);
       });
+
+      stopBtn.addEventListener("click", endMeeting);
             
       // Cleanup if user refreshes the tab or navigates away
       window.onunload = window.onbeforeunload = leaveRoom;
@@ -391,12 +405,12 @@
           form.classList.add("hide");
           conference.classList.remove("hide");
           leaveBtn.classList.remove("hide");
-          controls.classList.remove("hide");
+          stopBtn.classList.remove("hide");
         } else {
           form.classList.remove("hide");
           conference.classList.add("hide");
           leaveBtn.classList.add("hide");
-          controls.classList.add("hide");
+          stopBtn.classList.add("hide");
         }
       }
       
@@ -405,25 +419,6 @@
       
       // listen to the connection state
       hmsStore.subscribe(onConnection, selectIsConnectedToRoom);
-      
-      muteAud.addEventListener("click", () => {
-        const audioEnabled = !hmsStore.getState(selectIsLocalAudioEnabled);
-      
-        hmsActions.setLocalAudioEnabled(audioEnabled);
-      
-        muteAud.textContent = audioEnabled ? "Mute" : "Unmute";
-      });
-      
-      muteVid.addEventListener("click", () => {
-        const videoEnabled = !hmsStore.getState(selectIsLocalVideoEnabled);
-      
-        hmsActions.setLocalVideoEnabled(videoEnabled);
-      
-        muteVid.textContent = videoEnabled ? "Hide" : "Unhide";
-      
-        // Re-render video tile
-        renderPeers();
-      });
       
 </script>
 </html>

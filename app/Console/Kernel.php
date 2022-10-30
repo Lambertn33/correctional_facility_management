@@ -11,6 +11,7 @@ class Kernel extends ConsoleKernel
 
     protected $commands = [
         Commands\OnlinePaymentStatus::class,
+        Commands\MeetingEnded::class,
     ];
     /**
      * Define the application's command schedule.
@@ -21,6 +22,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('payment:status')->everyMinute();
+        $schedule->command('meeting:ended')->everyMinute();
     }
 
     /**

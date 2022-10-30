@@ -120,5 +120,10 @@
 
     "Meeting Ended": "Meeting Ended",
     "Meeting Information": "Meeting Information",
-    "Visitor Code": "Visitor Code"
+    "Visitor Code": "Visitor Code",
+    "Action": "Action",
+
+    "Join this meeting": "Join this meeting",
+    "Meeting details": "Meeting details",
+    "Meeting has ended": "Meeting has ended"
 }
