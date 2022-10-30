@@ -121,7 +121,7 @@
   
   .conference-section h2 {
     text-align: center;
-    font-size: 32px;
+    font-size: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid #fff;
   }
@@ -133,15 +133,21 @@
     grid-gap: 10px;
   }
   
-  .peer-video {
-    height: 250px;
-    width: 250px;
+  .peer-video.local {
+    height: 40vh;
+    width: 40vh;
     border-radius: 40%;
     object-fit: cover;
     margin-bottom: 10px;
+    transform: scaleX(-1);
   }
   
-  .local.peer-video {
+  .non-local.peer-video {
+    height: 80vh;
+    width: 80vh;
+    border-radius: 40%;
+    object-fit: cover;
+    margin-bottom: 10px;
     transform: scaleX(-1);
   }
   
@@ -246,13 +252,13 @@
       const muteAud = document.getElementById("mute-aud");
       const muteVid = document.getElementById("mute-vid");
       const controls = document.getElementById("controls");
-      const limitedTime = "{{$tariff->time}}";
-      const meetingEnd = "{{date('Y-m-d h:i:s', strtotime($meetingInfo->appointment->to))}}";
+      const meetingEnd = "{{$meetingEndTime}}";
       const meetingId = "{{$meetingInfo->id}}";
       const token = document.getElementById("token").value;
       let url =  "{{ route('invalidateMeeting', ":meetingId") }}";
       url = url.replace(':meetingId', meetingId);
-      
+      let now = Math.round(new Date().getTime() /1000);
+      let diffInSeconds = meetingEnd - now;
       function invalidateMeeting() {
         $.ajax({
           type:'PUT',
@@ -267,10 +273,7 @@
         });
       }
 
-      //TODO calculate time difference
-      
-
-            // Leaving the room
+       // Leaving the room
       function leaveRoom() {
         btnStyles(false);
         hmsActions.leave();
@@ -287,8 +290,7 @@
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
-            // display.textContent = minutes + ":" + seconds;
-            document.getElementById('time').innerHTML =  minutes + ":" + seconds;
+            document.getElementById('time').innerHTML = `${minutes} minutes - ${seconds} seconds`
 
             if (timer < 15) {
               document.getElementById('time').style.color="red";
@@ -310,7 +312,6 @@
           joinBtn.style.background = '#1565c0';
         }
       }
-      
       // Joining the room
       joinBtn.addEventListener("click", () => {
         btnStyles(true);
@@ -318,7 +319,7 @@
           userName: document.getElementById("name").value,
           authToken: document.getElementById("token").value
         });
-        startTimer(limitedTime * 60);
+        startTimer(diffInSeconds);
       });
             
       // Cleanup if user refreshes the tab or navigates away
@@ -356,7 +357,7 @@
         peers.forEach((peer) => {
           if (peer.videoTrack) {
             const video = h("video", {
-              class: "peer-video" + (peer.isLocal ? " local" : ""),
+              class: "peer-video" + (peer.isLocal ? " local" : "non-local"),
               autoplay: true, // if video doesn't play we'll see a blank tile
               muted: true,
               playsinline: true
@@ -379,8 +380,7 @@
                 },
                 peer.name + (peer.isLocal ? " (You)" : "")
               )
-            );
-      
+            );      
             peersContainer.append(peerContainer);
           }
         });
