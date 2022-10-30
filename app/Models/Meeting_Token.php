@@ -10,7 +10,7 @@ class Meeting_Token extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id', 'meeting_id', 'visitor_token', 'inmate_token', 'visitor_code', 'inmate_code'
+        'id', 'meeting_id', 'visitor_token', 'inmate_token', 'visitor_code', 'inmate_code','admin_token'
     ];
 
     protected $casts = [

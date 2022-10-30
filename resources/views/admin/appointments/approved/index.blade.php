@@ -85,8 +85,8 @@
                                                                     <li class="list-group-item">{{__('Inmate Names')}}: <b>{{$item->inmate->names}}</b></li>
                                                                     <li class="list-group-item">{{__('Inmate National ID')}}: <b>{{$item->inmate->national_id}}</b></li>
                                                                     <li class="list-group-item">{{__('Requested Date')}}: <b>{{$item->date}}</b></li>
-                                                                    <li class="list-group-item">{{__('From')}}: <b>{{date('h:i:s', strtotime($item->from))}}</b></li>
-                                                                    <li class="list-group-item">{{__('To')}}: <b>{{date('h:i:s', strtotime($item->to))}}</b></li>
+                                                                    <li class="list-group-item">{{__('From')}}: <b>{{date('H:i:s', strtotime($item->from))}}</b></li>
+                                                                    <li class="list-group-item">{{__('To')}}: <b>{{date('H:i:s', strtotime($item->to))}}</b></li>
                                                                 </ul>
                                                                 <hr>
                                                                 <h5>{{__('Payment Information')}}</h5>

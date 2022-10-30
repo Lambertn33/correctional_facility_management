@@ -111,6 +111,11 @@ Route::prefix('admin')->group(function() {
     //Meetings
     Route::controller(AdminMeetingsController::class)->prefix('meetings')->group(function() {
         Route::get('/', 'getAllMeetings')->name('getAllMeetings');
-        Route::get('/{meeting}', 'getSpecificMeeting')->name('getSpecificMeeting');
+        Route::prefix('{meeting}')->group(function() {
+            Route::get('/', 'getSpecificMeeting')->name('getSpecificMeeting');
+            Route::get('/generateAdminToken', 'generateAdminToken')->name('generateAdminToken');
+            Route::get('/join', 'joinMeeting')->name('adminJoinMeeting');
+        });
+        Route::post('/meetings/end', 'endMeeting')->name('endMeeting');
     });
 });

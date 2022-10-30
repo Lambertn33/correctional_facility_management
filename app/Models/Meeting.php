@@ -34,4 +34,14 @@ class Meeting extends Model
     {
         return $this->hasOne(Meeting_Token::class,'meeting_id', 'id');
     }
+
+    public function isMeetingHappeningNow() {
+        $meetingStart = $this->appointment->from;
+        $meetingEnd = $this->appointment->to;
+        $meetingStartTime = date('Y-m-d H:i:s', strtotime($meetingStart));
+        $meetingEndTime = date('Y-m-d H:i:s', strtotime($meetingEnd));
+        $now = now()->format('Y-m-d H:i:s');
+        return (($now > $meetingStartTime) && ($now < $meetingEndTime)) ? true : false;
+    }
+
 }

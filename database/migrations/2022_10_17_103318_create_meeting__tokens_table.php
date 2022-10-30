@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('inmate_token')->nullable();
             $table->string('visitor_code')->nullable();
             $table->string('inmate_code')->nullable();
+            $table->longText('admin_token')->nullable();
             $table->timestamps();
         });
     }
