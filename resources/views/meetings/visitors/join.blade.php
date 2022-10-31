@@ -297,8 +297,7 @@
             }
 
             if (--timer < 0) {
-              // invalidateMeeting();
-              console.log(timer);
+              invalidateMeeting();
             }
         }, 1000);
     }
@@ -384,7 +383,6 @@
             );      
             peersContainer.append(peerContainer);
           }
-          console.log(peer);
         });
       }
       

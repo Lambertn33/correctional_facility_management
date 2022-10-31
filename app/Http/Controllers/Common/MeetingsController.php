@@ -88,8 +88,8 @@ class MeetingsController extends Controller
                 $now = now()->format('Y-m-d H:i:s');
                 $meetingStart = $meeting->appointment->from;
                 $meetingEnd = $meeting->appointment->to;
-                $meetingStartTime =  date('H:i:s', strtotime($meetingStart));
-                $meetingEndTime =  date('H:i:s', strtotime($meetingEnd));
+                $meetingStartTime =  strtotime($meetingStart);
+                $meetingEndTime =  strtotime($meetingEnd);
                 if ((strtotime($meetingStart) - strtotime($now)) > 0) {
                     $meetingDifferenceFromNowInMinutes =  ceil(round(abs(strtotime($meetingStart) - strtotime($now)) /60, 2));
                     if ($meetingDifferenceFromNowInMinutes > 2) {
@@ -102,6 +102,8 @@ class MeetingsController extends Controller
                     'inmate_token' => $inmateToken
                 ]);
                 $request->session()->put('meeting', $meeting);
+                $request->session()->put('meetingStartTime', $meetingStartTime);
+                $request->session()->put('meetingEndTime', $meetingEndTime);
                 $request->session()->put('user_type', $data['userType']);
                 return redirect()->route('joinMeeting');
 
