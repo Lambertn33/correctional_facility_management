@@ -204,7 +204,7 @@
         }
 
         let today = new Date();
-        let minDate = new Date(today.setDate(today.getDate() + 1)).toISOString().split("T")[0];
+        let minDate = new Date(today.setDate(today.getDate())).toISOString().split("T")[0];
         document.getElementById("visitDate").setAttribute('min', minDate);
     }
 </script>
