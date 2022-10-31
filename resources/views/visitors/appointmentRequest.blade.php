@@ -183,15 +183,27 @@
             '15:30', '15:40', '15:50', '16:00', '16:10', '16:20',
             '16:30'
         ];
+
+        function timeformat(date) {
+            var h = date.getHours();
+            var m = date.getMinutes();
+            h = h % 12;
+            h = h ? h : 12;
+            h = h < 10 ? '0'+h: h;
+            m = m < 10 ? '0'+m: m;
+            var mytime= h + ':' + m + ' ';
+            return mytime;
+        }
+
         var selectInput = document.getElementById('visitTime');
         for ( let i = 0; i <= allowedTimes.length; i++ ) {
-            if (allowedTimes[i] !== undefined) {
+            if (allowedTimes[i] !== undefined && allowedTimes[i] > timeformat(new Date())) {
                 let option = document.createElement( 'option' );
                 option.value = option.text = allowedTimes[i];
-                selectInput.appendChild( option );
-            
+                selectInput.appendChild( option );            
             }
         }
+
         let today = new Date();
         let minDate = new Date(today.setDate(today.getDate() + 1)).toISOString().split("T")[0];
         document.getElementById("visitDate").setAttribute('min', minDate);
