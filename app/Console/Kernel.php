@@ -22,7 +22,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('payment:status')->everyMinute();
-        $schedule->command('meeting:ended')->everyMinute();
+        // $schedule->command('meeting:ended')->everyMinute();
     }
 
     /**
