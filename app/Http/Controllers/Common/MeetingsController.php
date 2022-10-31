@@ -97,7 +97,7 @@ class MeetingsController extends Controller
                     }
                 }
                 $room = $meeting->room_id;
-                $inmateToken =  (new TokensGenerating)->generateToken(false, false, $room, false);
+                $inmateToken =  (new TokensGenerating)->generateToken(false, true, $room, false);
                 $meetingToken->update([
                     'inmate_token' => $inmateToken
                 ]);
