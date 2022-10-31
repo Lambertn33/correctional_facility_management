@@ -83,7 +83,7 @@ class MeetingsController extends Controller
                 $meetingToken = $checkCode->first();
                 $meeting = $meetingToken->meeting;
                 if ($meeting->meeting_ended) {
-                    return back()->withInput()->with('error', 'this meeting has been ended on '.$meeting->appointment->date.' at ' .date('h:i:s', strtotime($meeting->appointment->from)) . ' ');
+                    return back()->withInput()->with('error', 'this meeting has been ended on '.$meeting->appointment->date.' at ' .date('h:i:s', strtotime($meeting->appointment->to)) . ' ');
                 }
                 $now = now()->format('Y-m-d H:i:s');
                 $meetingStart = $meeting->appointment->from;
@@ -132,6 +132,7 @@ class MeetingsController extends Controller
             Meeting::find($id)->update([
                 'meeting_ended' => true
             ]);
+            $request->session()->forget('meeting');
             DB::commit();
             return Response::json([
                 'message' => 'data updated'

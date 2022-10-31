@@ -38,10 +38,10 @@ class Meeting extends Model
     public function isMeetingHappeningNow() {
         $meetingStart = $this->appointment->from;
         $meetingEnd = $this->appointment->to;
-        $meetingStartTime = date('Y-m-d H:i:s', strtotime($meetingStart));
-        $meetingEndTime = date('Y-m-d H:i:s', strtotime($meetingEnd));
-        $now = now()->format('Y-m-d H:i:s');
-        return (($now > $meetingStartTime) && ($now < $meetingEndTime)) ? true : false;
+        $meetingStartTime = strtotime($meetingStart);
+        $meetingEndTime = strtotime($meetingEnd);
+        $now = strtotime(now());
+        return (($now >= $meetingStartTime) && ($now <= $meetingEndTime)) ? true : false;
     }
 
 }

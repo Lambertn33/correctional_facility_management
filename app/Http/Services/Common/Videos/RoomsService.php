@@ -24,7 +24,7 @@
             return Http::withHeaders([
                 'Authorization' => 'Bearer '.$managementToken.'',
             ])->acceptJson()
-            ->post(''.env("100MS_APP_URL").'/active-rooms' .'/' .$roomId.'/end-rooms');            
+            ->post(''.env("100MS_APP_URL").'/active-rooms' .'/' .$roomId.'/end-room');            
         }
     }
 
