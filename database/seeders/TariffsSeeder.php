@@ -35,7 +35,7 @@ class TariffsSeeder extends Seeder
             ),
             2 => array(
                 'id' => Str::uuid()->toString(),
-                'time' => 10,
+                'time' => 59,
                 'amount' => 200,
                 'created_at' => now(),
                 'updated_at' => now()
