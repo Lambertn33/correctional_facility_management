@@ -41,7 +41,6 @@ class VisitorsController extends Controller
         $tariff = Tariff::find($data['tariff']);
         $timeToAdd = $tariff->time;
         $to = date('H:i:s', strtotime($from. ' +'.$timeToAdd. 'minutes'));
-
         if (!(new ValidateInputs)->validatePhoneNumber($data['telephone'], $phoneFormat, $phoneTotalDigits)) {
             return back()->withInput()->with('error','The Telephone number must start with '. $phoneFormat .'... and consists of '.$phoneTotalDigits.' digits');
         }
