@@ -47,16 +47,16 @@ class OnlinePaymentStatus extends Command
                          // if user has paid, send success message and change payment status
                         if ((strtoupper($onlineStatusResponse['status']) == Payment::SUCCESSFULL)) {
                             $message = 'Dear '.$names.' Your payment has been received successully... you will be informed the next steps very soon....';
-                            (new SendMessage)->sendMessage($telephone, $message);
                             $pendingPayment->update([
                                 'status' => strtoupper($onlineStatusResponse['status'])
                             ]);
+                            (new SendMessage)->sendMessage($telephone, $message);
                         } else {
                             // if user doesn't pay and payment fails, send failed message and delete pending appointment and payment
                             $message = 'Dear '.$names.' Your payment has failed.... please re-request your appointment';
-                            (new SendMessage)->sendMessage($telephone, $message);
                             $pendingPayment->delete();
                             $pendingPayment->appointment->delete();
+                            (new SendMessage)->sendMessage($telephone, $message);
                         }
                     }
                 }

@@ -114,13 +114,16 @@ class AppointmentsController extends Controller
         $phoneFormat = 2507;
         $phoneTotalDigits = 12;
         $data =  $request->all();
+        $authenticatedUser = Auth::user();
+        $authenticatedAdmin = $authenticatedUser->admin;
+        $currentPrison = $authenticatedAdmin->prison;
         if (!(new ValidateInputs)->validatePhoneNumber($data['telephone'], $phoneFormat, $phoneTotalDigits)) {
             return back()->withInput()->with('error','The Telephone number must start with '. $phoneFormat .'... and consists of '.$phoneTotalDigits.' digits');
         }
 
         try {
             DB::beginTransaction();
-            $inmate = Inmate::where('inmate_code', $data['code']);
+            $inmate = Inmate::where('inmate_code', $data['code'])->where('prison_id', $currentPrison->id);
             if (!$inmate->exists()) {
                 return back()->withInput()->with('error','Inmate with such code does not exist');   
             } else {
