@@ -125,5 +125,10 @@
 
     "Join this meeting": "Rejoignez cette réunion",
     "Meeting details": "Détails de la réunion",
-    "Meeting has ended": "La réunion est terminée"
+    "Meeting has ended": "La réunion est terminée",
+
+    "Next 6 visits today": "6 prochaines visites aujourd'hui",
+    "Latest 6 visits of tomorrow": "Dernières 6 visites de demain",
+
+    "Let the visitor knows why you rejected the appointment in not more than 50 words": "Faites savoir au visiteur pourquoi vous avez refusé le rendez-vous en 50 mots au maximum"
 }
