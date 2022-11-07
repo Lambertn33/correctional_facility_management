@@ -108,7 +108,7 @@
                                             <div class="col-sm-3"></div>
                                             <div class="col-sm-9 text-secondary">
                                                 <a href="#" class="btn btn-success" onclick="document.getElementById('{{$pendingAppointment}}-approve').submit();">{{__('Approve Appointment')}}</a>
-                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-reject">Reject Appointment</button>
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-reject">{{__('Reject Appointment')}}</button>
 
                                                 <form action="{{route('approveSinglePendingAppointment', $pendingAppointment->id)}}" method="post" id="{{$pendingAppointment}}-approve" class="d-none">
                                                     <input type="hidden" name="_method" value="PUT">
@@ -121,18 +121,18 @@
                                                             @csrf
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Appointment from {{$pendingAppointment->names}}</h5>
+                                                                    <h5 class="modal-title" id="exampleModalLabel">{{$pendingAppointment->names}}</h5>
                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <input type="hidden" name="_method" value="PUT">
                                                                     <div class="col-12">
-                                                                        <label for="rejectionMessage" class="form-label">Let the visitor knows why you rejected the appointment in not more than 50 words:</label>
+                                                                        <label for="rejectionMessage" class="form-label"><b>{{__('Let the visitor knows why you rejected the appointment in not more than 50 words')}}</b>:</label>
                                                                         <textarea maxlength="50" name="rejectionMessage" required id="rejectionMessage" cols="20" rows="5" class="form-control"></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="submit" class="btn btn-primary">Reject Appointment</button>
+                                                                    <button type="submit" class="btn btn-primary">{{__('Reject Appointment')}}</button>
                                                                 </div>
                                                             </div>
                                                         </form>

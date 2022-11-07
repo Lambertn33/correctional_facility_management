@@ -20,6 +20,10 @@ a {
 	text-decoration: none
 }
 
+.py-8 {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
 .wrapper {
 	width: 100%;
 	position: relative

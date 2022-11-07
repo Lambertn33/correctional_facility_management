@@ -128,6 +128,7 @@
            </div><!--end row-->
         <!--end row-->
     </div>
+    @include('admin.dashboard.visitsHours')
 </div>
 <script src="{{ $inmatesChart->cdn() }}"></script>
 {{ $inmatesChart->script() }}
