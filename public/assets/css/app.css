@@ -21,8 +21,8 @@ a {
 }
 
 .py-8 {
-	padding-top: 8px;
-	padding-bottom: 8px;
+	padding-top: 8px !important;
+	padding-bottom: 8px !important;
 }
 .wrapper {
 	width: 100%;
