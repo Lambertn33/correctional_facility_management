@@ -60,17 +60,18 @@ class AppointmentsController extends Controller
         }
     }
 
-    public function rejectSinglePendingAppointment($id)
+    public function rejectSinglePendingAppointment(Request $request, $id)
     {
         $pendingAppointment = Appointment::with('inmate')->with('tariff')->find($id);   
         try {
+            $rejectionMessage = $request->rejectionMessage;
             DB::beginTransaction();
             $pendingAppointment->update([
                 'status' => Appointment::REJECTED
             ]);
             // Send SMS To User Notifying
             DB::commit();
-            dispatch(new AppointmentStatus($pendingAppointment, $pendingAppointment->inmate, false, null));
+            dispatch(new AppointmentStatus($pendingAppointment, $pendingAppointment->inmate, false, null, $rejectionMessage));
             return redirect()->route('getPendingAppointments')->with('success', 'Appointment rejected successfully');
         } catch (\Throwable $th) {
             DB::rollBack();

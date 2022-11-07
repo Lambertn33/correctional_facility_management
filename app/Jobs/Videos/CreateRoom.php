@@ -68,7 +68,7 @@ class CreateRoom implements ShouldQueue
             Meeting::insert($newMeeting);
             Meeting_Token::insert($newMeetingTokens);
             DB::commit();
-            dispatch(new AppointmentStatus($this->appointment, $this->inmate, true, $visitorCode));
+            dispatch(new AppointmentStatus($this->appointment, $this->inmate, true, $visitorCode, null));
         } catch (\Throwable $th) {
             DB::rollBack();
         }
