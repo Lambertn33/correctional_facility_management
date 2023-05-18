@@ -12,7 +12,7 @@
 	<!--plugins-->
 	<link href="/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
 	<link href="/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-	
+
 	<link href="/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 	<!-- loader-->
 	<link href="/assets/css/pace.min.css" rel="stylesheet" />
@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="/assets/css/semi-dark.css" />
 	<link rel="stylesheet" href="/assets/css/header-colors.css" />
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-	<title>PRISONS MANAGEMENT</title>
+	<title>CORRECTIONAL FACILITIES MANAGEMENT</title>
 </head>
 
 <style>
@@ -77,7 +77,7 @@
 <body>
 	<!--wrapper-->
 	<div class="wrapper">
-		<!--start header wrapper-->	
+		<!--start header wrapper-->
 	  <div class="header-wrapper">
 		<!--start header -->
 		<header>
@@ -85,7 +85,7 @@
 				<nav class="navbar navbar-expand">
 					<div class="topbar-logo-header">
 						<div class="">
-							
+
 						</div>
 						<div class="">
 							<h4 class="logo-text">{{$currentPrison->name}}</h4>
@@ -225,7 +225,7 @@
 	<!--plugins-->
 	<script src="/assets/js/jquery.min.js"></script>
 	<script src="/assets/plugins/simplebar/js/simplebar.min.js"></script>
-	
+
 	<script src="/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 	<script src="/assets/plugins/apexcharts-bundle/js/apexcharts.min.js"></script>
 	<script src="/assets/plugins/chartjs/chart.min.js"></script>
@@ -246,7 +246,7 @@
 <script>
     $(document).ready(function() {
 		$("#languageChange").change(function(){
-			var url = "{{ route('changeLanguage') }}"; 
+			var url = "{{ route('changeLanguage') }}";
 			var token = $("input[name=_token]").val();
 			var lang = $(this).val();
 

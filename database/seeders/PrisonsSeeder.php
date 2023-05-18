@@ -21,7 +21,7 @@ class PrisonsSeeder extends Seeder
         DB::table('prisons')->insert(array(
             0 => array(
                 'id' => 'a406ad0c-2b49-4d1c-a1eb-b1ad2bc298a2',
-                'name' => 'MAGERAGERE PRISON',
+                'name' => 'NYARUGENGE CORRECTIONAL FACILITY',
                 'province' => 'KIGALI',
                 'district' => 'KICUKIRO',
                 'code' => 'Code 1',
@@ -30,7 +30,7 @@ class PrisonsSeeder extends Seeder
             ),
             1 => array(
                 'id' => '6e8bb547-96a5-406b-a947-96bb0760745e',
-                'name' => 'RUBAVU PRISON',
+                'name' => 'RUBAVU CORRECTIONAL FACILITY',
                 'province' => 'KIGALI',
                 'district' => 'NYARUGENGE',
                 'code' => 'Code 2',
@@ -39,7 +39,7 @@ class PrisonsSeeder extends Seeder
             ),
             2 => array(
                 'id' => 'c7a610c1-2f17-4b5f-b3a8-07e3782fbe78',
-                'name' => 'MUHANGA PRISON',
+                'name' => 'MUHANGA CORRECTIONAL FACILITY',
                 'province' => 'KIGALI',
                 'district' => 'GASABO',
                 'code' => 'Code 3',
